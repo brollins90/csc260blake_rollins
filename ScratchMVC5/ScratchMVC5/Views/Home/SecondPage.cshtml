@@ -1,0 +1,28 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SecondPage</title>
+</head>
+<body>
+    <div> 
+        <h2>
+            The current time is @DateTime.Now.ToLocalTime();
+        </h2>
+
+        @{
+            Random rand = new Random();
+            int r = rand.Next(7) + 3;
+            for(int i = 0; i < r; i++) {
+                @:<h3>HAPPY</h3>
+            }
+        }
+    </div>
+</body>
+</html>

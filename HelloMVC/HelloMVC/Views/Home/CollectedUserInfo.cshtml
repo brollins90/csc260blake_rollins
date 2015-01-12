@@ -1,0 +1,35 @@
+﻿@model HelloMVC.Models.UserInfo
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CollectedUserInfo</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/Site.css" />
+</head>
+<body>
+    <div>
+        <p>Thanks @Model.Name, it was nice to learn more about you! </p>
+        <p>I hear @Model.Hometown is nice.</p>
+        <p>@Model.Movie is also one of my favorites.</p>
+        @if (Model.Age < 24)
+        {
+            @: You are younger than I am.
+            }
+        else if (Model.Age == 24)
+        {
+            @: We are the same age!
+        }
+        else
+        {
+            @: You are older than I am.
+        }
+
+    </div>
+</body>
+</html>

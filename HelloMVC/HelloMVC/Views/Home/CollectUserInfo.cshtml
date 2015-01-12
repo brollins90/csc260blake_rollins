@@ -1,0 +1,27 @@
+﻿@model HelloMVC.Models.UserInfo
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CollectUserInfo</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/Site.css"/>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary()
+        <p>Tell me about you:</p>
+        <p>What is your name? @Html.TextBoxFor(x => x.Name) </p>
+        <p>What is your favorite movie? @Html.TextBoxFor(x => x.Movie) </p>
+        <p>How old are you? @Html.TextBoxFor(x => x.Age) </p>
+        <p>Where are you from? @Html.TextBoxFor(x => x.Hometown) </p>
+        <p><input type="submit" value="Submit" /></p>
+    }
+</body>
+</html>

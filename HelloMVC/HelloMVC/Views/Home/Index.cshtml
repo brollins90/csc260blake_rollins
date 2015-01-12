@@ -1,0 +1,22 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/Site.css" />
+</head>
+<body>
+    <div> 
+        <p>This site is about me (@Model.Name).  I am a student at @Model.School</p>
+        <p>One of my favorite hobbies is @ViewBag.Hobby</p>
+        <p>One of my favorite movies is @ViewBag.Movie</p>
+        <p>@Html.ActionLink("Tell me about you", "CollectUserInfo")</p>
+    </div>
+</body>
+</html>

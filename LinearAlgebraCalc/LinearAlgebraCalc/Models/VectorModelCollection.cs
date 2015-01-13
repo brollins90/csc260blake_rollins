@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LinearAlgebraCalcLib;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -52,6 +53,19 @@ namespace LinearAlgebraCalc.Models
         public void Add(VectorModel vect)
         {
             Vectors.Add(vect);
+        }
+
+        public List<Vector3> GetSelectedVectors()
+        {
+            List<Vector3> l = new List<Vector3>();
+            foreach (VectorModel m in Vectors)
+            {
+                if (m.Use)
+                {
+                    l.Add(m.Vector);
+                }
+            }
+            return l;
         }
 
         #region INotifyPropertyChanged Members

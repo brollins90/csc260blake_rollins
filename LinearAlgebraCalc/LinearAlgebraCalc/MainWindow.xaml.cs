@@ -52,6 +52,11 @@ namespace LinearAlgebraCalc
                 Use = true,
                 Vector = new Vector3(2, 2, 2)
             });
+            this.VectorCollection.Add(new VectorModel()
+            {
+                Use = true,
+                Vector = new Vector3(3, 4, 0)
+            });
         }
         private void Text(Canvas c, double x, double y, string text, Color color)
         {
@@ -63,27 +68,32 @@ namespace LinearAlgebraCalc
             Canvas.SetTop(textBlock, y);
             c.Children.Add(textBlock);
         }
+
         private void Add_Button_Click(object sender, RoutedEventArgs e)
         {
             addSubtractCanvas.Children.Clear();
             result = null;
+            List<Vector3> l = VectorCollection.GetSelectedVectors();
+
+            if (l.Count() < 1)
+            {
+                Text(addSubtractCanvas, 10, 10, "You need to select more vectors.", Color.FromRgb(255, 0, 0));
+                return;
+            }
 
             int y = 10;
             Text(addSubtractCanvas, 10, y, "Add:", Color.FromRgb(255, 0, 0));
-            foreach (VectorModel m in VectorCollection.Vectors)
+            foreach (Vector3 m in l)
             {
-                if (m.Use)
-                {
                     if (result == null)
                     {
-                        result = m.Vector;
+                        result = m;
                     }
                     else
                     {
-                        result = result + m.Vector;
+                        result = result + m;
                     }
-                    Text(addSubtractCanvas, 10, y += 15, m.Vector.ToString(), Color.FromRgb(255, 0, 0));
-                }
+                    Text(addSubtractCanvas, 10, y += 15, m.ToString(), Color.FromRgb(255, 0, 0));
             }
             Text(addSubtractCanvas, 10, y += 15, "result:", Color.FromRgb(255, 0, 0));
             Text(addSubtractCanvas, 10, y += 15, result.ToString(), Color.FromRgb(255, 0, 0));
@@ -93,23 +103,27 @@ namespace LinearAlgebraCalc
         {
             addSubtractCanvas.Children.Clear();
             result = null;
+            List<Vector3> l = VectorCollection.GetSelectedVectors();
+
+            if (l.Count() < 1)
+            {
+                Text(addSubtractCanvas, 10, 10, "You need to select more vectors.", Color.FromRgb(255, 0, 0));
+                return;
+            }
 
             int y = 10;
             Text(addSubtractCanvas, 10, y, "Subtract:", Color.FromRgb(255, 0, 0));
-            foreach (VectorModel m in VectorCollection.Vectors)
+            foreach (Vector3 m in l)
             {
-                if (m.Use)
+                if (result == null)
                 {
-                    if (result == null)
-                    {
-                        result = m.Vector;
-                    }
-                    else
-                    {
-                        result = result - m.Vector;
-                    }
-                    Text(addSubtractCanvas, 10, y += 15, m.Vector.ToString(), Color.FromRgb(255, 0, 0));
+                    result = m;
                 }
+                else
+                {
+                    result = result - m;
+                }
+                Text(addSubtractCanvas, 10, y += 15, m.ToString(), Color.FromRgb(255, 0, 0));                
             }
             Text(addSubtractCanvas, 10, y += 15, "result:", Color.FromRgb(255, 0, 0));
             Text(addSubtractCanvas, 10, y += 15, result.ToString(), Color.FromRgb(255, 0, 0));
@@ -119,30 +133,117 @@ namespace LinearAlgebraCalc
         {
             multiplyCanvas.Children.Clear();
             result = null;
+            List<Vector3> l = VectorCollection.GetSelectedVectors();
 
-            Vector3 vectToUse = null;
-            Fraction scalar = new Fraction(1,2);
+            if (l.Count() != 1)
+            {
+                Text(multiplyCanvas, 10, 10, "You can only select 1 vector.", Color.FromRgb(255, 0, 0));
+                return;
+            }
+
+            Vector3 vectToUse = l[0];
+            Fraction scalar = new Fraction(1, 2);
 
             int y = 10;
             Text(multiplyCanvas, 10, y, "Multiply:", Color.FromRgb(255, 0, 0));
-            foreach (VectorModel m in VectorCollection.Vectors)
+            foreach (Vector3 m in l)
             {
-                if (m.Use)
-                {
-                    if (vectToUse == null)
-                    {
-                        vectToUse = m.Vector;
-                        Text(multiplyCanvas, 10, y += 15, m.Vector.ToString(), Color.FromRgb(255, 0, 0));
-                        result = vectToUse * scalar;
-                    }
-                    else
-                    {
-                        Text(multiplyCanvas, 10, y += 15, "You can only select one vector to multiply with a scalar", Color.FromRgb(255, 0, 0));
-                    }
-                }
+                Text(multiplyCanvas, 10, y += 15, vectToUse.ToString(), Color.FromRgb(255, 0, 0));
+                Text(multiplyCanvas, 10, y += 15, "x " + scalar.ToString(), Color.FromRgb(255, 0, 0));
+                result = vectToUse * scalar;
             }
             Text(multiplyCanvas, 10, y += 15, "result:", Color.FromRgb(255, 0, 0));
             Text(multiplyCanvas, 10, y += 15, result.ToString(), Color.FromRgb(255, 0, 0));
+        }
+
+        private void Normalize_Button_Click(object sender, RoutedEventArgs e)
+        {
+            normalizeCanvas.Children.Clear();
+            result = null;
+            List<Vector3> l = VectorCollection.GetSelectedVectors();
+
+            if (l.Count() != 1)
+            {
+                Text(normalizeCanvas, 10, 10, "You can only select 1 vector.", Color.FromRgb(255, 0, 0));
+                return;
+            }
+
+            Vector3 vectToUse = l[0];
+
+            int y = 10;
+            Text(normalizeCanvas, 10, y, "Normailze:", Color.FromRgb(255, 0, 0));
+            Text(normalizeCanvas, 10, y += 15, vectToUse.ToString(), Color.FromRgb(255, 0, 0));
+            Text(normalizeCanvas, 10, y += 15, "result:", Color.FromRgb(255, 0, 0));
+            Text(normalizeCanvas, 10, y += 15, vectToUse.Normalize().ToString(), Color.FromRgb(255, 0, 0));
+        }
+
+        private void Length_Button_Click(object sender, RoutedEventArgs e)
+        {
+            lengthCanvas.Children.Clear();
+            result = null;
+            List<Vector3> l = VectorCollection.GetSelectedVectors();
+
+            if (l.Count() != 1)
+            {
+                Text(lengthCanvas, 10, 10, "You can only select 1 vector.", Color.FromRgb(255, 0, 0));
+                return;
+            }
+
+            Vector3 vectToUse = l[0];
+
+            int y = 10;
+            Text(lengthCanvas, 10, y, "Length:", Color.FromRgb(255, 0, 0));
+            Text(lengthCanvas, 10, y += 15, vectToUse.ToString(), Color.FromRgb(255, 0, 0));
+            Text(lengthCanvas, 10, y += 15, "result:", Color.FromRgb(255, 0, 0));
+            Text(lengthCanvas, 10, y += 15, vectToUse.Length().ToString(), Color.FromRgb(255, 0, 0));
+        }
+
+        private void Cross_Button_Click(object sender, RoutedEventArgs e)
+        {
+            crossCanvas.Children.Clear();
+            result = null;
+            List<Vector3> l = VectorCollection.GetSelectedVectors();
+
+            if (l.Count() != 2)
+            {
+                Text(crossCanvas, 10, 10, "You must select 2 vectors.", Color.FromRgb(255, 0, 0));
+                return;
+            }
+
+            Vector3 vecta = l[0];
+            Vector3 vectb = l[1];
+
+            int y = 10;
+            Text(crossCanvas, 10, y, "Cross product:", Color.FromRgb(255, 0, 0));
+            Text(crossCanvas, 10, y += 15, vecta.ToString(), Color.FromRgb(255, 0, 0));
+            Text(crossCanvas, 10, y += 15, vectb.ToString(), Color.FromRgb(255, 0, 0));
+
+            result = vecta.Cross(vectb);
+            Text(crossCanvas, 10, y += 15, "result:", Color.FromRgb(255, 0, 0));
+            Text(crossCanvas, 10, y += 15, result.ToString(), Color.FromRgb(255, 0, 0));
+        }
+
+        private void Dot_Button_Click(object sender, RoutedEventArgs e)
+        {
+            dotCanvas.Children.Clear();
+            result = null;
+            List<Vector3> l = VectorCollection.GetSelectedVectors();
+
+            if (l.Count() != 2)
+            {
+                Text(dotCanvas, 10, 10, "You must select 2 vectors.", Color.FromRgb(255, 0, 0));
+                return;
+            }
+
+            Vector3 vecta = l[0];
+            Vector3 vectb = l[1];
+
+            int y = 10;
+            Text(dotCanvas, 10, y, "Dot product:", Color.FromRgb(255, 0, 0));
+            Text(dotCanvas, 10, y += 15, vecta.ToString(), Color.FromRgb(255, 0, 0));
+            Text(dotCanvas, 10, y += 15, vectb.ToString(), Color.FromRgb(255, 0, 0));
+            Text(dotCanvas, 10, y += 15, "result:", Color.FromRgb(255, 0, 0));
+            Text(dotCanvas, 10, y += 15, vecta.Dot(vectb).ToString(), Color.FromRgb(255, 0, 0));
         }
 
         private void Save_Button_Click(object sender, RoutedEventArgs e)

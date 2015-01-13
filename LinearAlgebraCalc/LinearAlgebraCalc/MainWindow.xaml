@@ -38,21 +38,33 @@
                 </TabItem>
                 <TabItem Header="Multiplication" Height="22" VerticalAlignment="Bottom">
                     <DockPanel Background="#FFE5E5E5">
-                        <Button Content="Multiply Vectors" Click="Multiply_Button_Click" DockPanel.Dock="Bottom"/>
+                        <Button Content="Multiply Vector" Click="Multiply_Button_Click" DockPanel.Dock="Bottom"/>
                         <Canvas x:Name="multiplyCanvas"/>
                     </DockPanel>
                 </TabItem>
                 <TabItem Header="Normalization" Height="22" VerticalAlignment="Bottom">
-                    <Grid Background="#FFE5E5E5"/>
+                    <DockPanel Background="#FFE5E5E5">
+                        <Button Content="Normalize Vectors" Click="Normalize_Button_Click" DockPanel.Dock="Bottom"/>
+                        <Canvas x:Name="normalizeCanvas"/>
+                    </DockPanel>
                 </TabItem>
                 <TabItem Header="Length/Magnitude" Height="22" VerticalAlignment="Bottom">
-                    <Grid Background="#FFE5E5E5"/>
+                    <DockPanel Background="#FFE5E5E5">
+                        <Button Content="Calculate length" Click="Length_Button_Click" DockPanel.Dock="Bottom"/>
+                        <Canvas x:Name="lengthCanvas"/>
+                    </DockPanel>
                 </TabItem>
                 <TabItem Header="Dot Product" Height="22" VerticalAlignment="Bottom">
-                    <Grid Background="#FFE5E5E5"/>
+                    <DockPanel Background="#FFE5E5E5">
+                        <Button Content="Calculate dot" Click="Dot_Button_Click" DockPanel.Dock="Bottom"/>
+                        <Canvas x:Name="dotCanvas"/>
+                    </DockPanel>
                 </TabItem>
                 <TabItem Header="Cross Product" Height="22" VerticalAlignment="Bottom">
-                    <Grid Background="#FFE5E5E5"/>
+                    <DockPanel Background="#FFE5E5E5">
+                        <Button Content="Calculate cross" Click="Cross_Button_Click" DockPanel.Dock="Bottom"/>
+                        <Canvas x:Name="crossCanvas"/>
+                    </DockPanel>
                 </TabItem>
             </TabControl>
         </DockPanel>

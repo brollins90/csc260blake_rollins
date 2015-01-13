@@ -25,10 +25,13 @@ namespace LinearAlgebraCalc
     {
         private VectorModelCollection _vectorCollection;
         public VectorModelCollection VectorCollection { get { return _vectorCollection; } set { _vectorCollection = value; } }
-        
+
+        Vector3 result;
+
         public MainWindow()
         {
             InitializeComponent();
+            this.result = null;
             this.DataContext = this;
             this.VectorCollection = new VectorModelCollection();
             this.VectorCollection.Add(new VectorModel()
@@ -50,7 +53,7 @@ namespace LinearAlgebraCalc
                 Vector = new Vector3(2, 2, 2)
             });
         }
-        private void AddSubtractText(double x, double y, string text, Color color)
+        private void Text(Canvas c, double x, double y, string text, Color color)
         {
             //
             TextBlock textBlock = new TextBlock();
@@ -58,53 +61,100 @@ namespace LinearAlgebraCalc
             textBlock.Foreground = new SolidColorBrush(color);
             Canvas.SetLeft(textBlock, x);
             Canvas.SetTop(textBlock, y);
-            addSubtractCanvas.Children.Add(textBlock);
+            c.Children.Add(textBlock);
         }
         private void Add_Button_Click(object sender, RoutedEventArgs e)
         {
             addSubtractCanvas.Children.Clear();
-            Vector3 res = null;
+            result = null;
 
             int y = 10;
-            AddSubtractText(10, y, "Add:", Color.FromRgb(255, 0, 0));
+            Text(addSubtractCanvas, 10, y, "Add:", Color.FromRgb(255, 0, 0));
             foreach (VectorModel m in VectorCollection.Vectors)
             {
-                if (res == null)
+                if (m.Use)
                 {
-                    res = m.Vector;
+                    if (result == null)
+                    {
+                        result = m.Vector;
+                    }
+                    else
+                    {
+                        result = result + m.Vector;
+                    }
+                    Text(addSubtractCanvas, 10, y += 15, m.Vector.ToString(), Color.FromRgb(255, 0, 0));
                 }
-                else
-                {
-                    res = res + m.Vector;
-                }
-                AddSubtractText(10, y+= 15, m.Vector.ToString(), Color.FromRgb(255, 0, 0));
             }
-            AddSubtractText(10, y += 15, "result:", Color.FromRgb(255, 0, 0));
-            AddSubtractText(10, y += 15, res.ToString(), Color.FromRgb(255, 0, 0));
+            Text(addSubtractCanvas, 10, y += 15, "result:", Color.FromRgb(255, 0, 0));
+            Text(addSubtractCanvas, 10, y += 15, result.ToString(), Color.FromRgb(255, 0, 0));
         }
 
         private void Subtract_Button_Click(object sender, RoutedEventArgs e)
         {
             addSubtractCanvas.Children.Clear();
-
-            Vector3 res = null;
+            result = null;
 
             int y = 10;
-            AddSubtractText(10, y, "Subtract:", Color.FromRgb(255, 0, 0));
+            Text(addSubtractCanvas, 10, y, "Subtract:", Color.FromRgb(255, 0, 0));
             foreach (VectorModel m in VectorCollection.Vectors)
             {
-                if (res == null)
+                if (m.Use)
                 {
-                    res = m.Vector;
+                    if (result == null)
+                    {
+                        result = m.Vector;
+                    }
+                    else
+                    {
+                        result = result - m.Vector;
+                    }
+                    Text(addSubtractCanvas, 10, y += 15, m.Vector.ToString(), Color.FromRgb(255, 0, 0));
                 }
-                else
-                {
-                    res = res - m.Vector;
-                }
-                AddSubtractText(10, y += 15, m.Vector.ToString(), Color.FromRgb(255, 0, 0));
             }
-            AddSubtractText(10, y += 15, "result:", Color.FromRgb(255, 0, 0));
-            AddSubtractText(10, y += 15, res.ToString(), Color.FromRgb(255, 0, 0));
+            Text(addSubtractCanvas, 10, y += 15, "result:", Color.FromRgb(255, 0, 0));
+            Text(addSubtractCanvas, 10, y += 15, result.ToString(), Color.FromRgb(255, 0, 0));
+        }
+
+        private void Multiply_Button_Click(object sender, RoutedEventArgs e)
+        {
+            multiplyCanvas.Children.Clear();
+            result = null;
+
+            Vector3 vectToUse = null;
+            Fraction scalar = new Fraction(1,2);
+
+            int y = 10;
+            Text(multiplyCanvas, 10, y, "Multiply:", Color.FromRgb(255, 0, 0));
+            foreach (VectorModel m in VectorCollection.Vectors)
+            {
+                if (m.Use)
+                {
+                    if (vectToUse == null)
+                    {
+                        vectToUse = m.Vector;
+                        Text(multiplyCanvas, 10, y += 15, m.Vector.ToString(), Color.FromRgb(255, 0, 0));
+                        result = vectToUse * scalar;
+                    }
+                    else
+                    {
+                        Text(multiplyCanvas, 10, y += 15, "You can only select one vector to multiply with a scalar", Color.FromRgb(255, 0, 0));
+                    }
+                }
+            }
+            Text(multiplyCanvas, 10, y += 15, "result:", Color.FromRgb(255, 0, 0));
+            Text(multiplyCanvas, 10, y += 15, result.ToString(), Color.FromRgb(255, 0, 0));
+        }
+
+        private void Save_Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (result != null)
+            {
+                VectorCollection.Add(new VectorModel()
+                {
+                    Use = false,
+                    Vector = result
+                });
+            }
         }
 
         

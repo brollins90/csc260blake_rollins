@@ -2,12 +2,12 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:b="clr-namespace:LinearAlgebraCalc.UserControls"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="550" Width="700">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30*"/>
             <RowDefinition Height="5"/>
-            <RowDefinition Height="50*"/>
+            <RowDefinition Height="60*"/>
         </Grid.RowDefinitions>
         <DataGrid Grid.Row="0" ItemsSource="{Binding Path=VectorCollection.Vectors}" AutoGenerateColumns="False">
             <DataGrid.Columns>
@@ -22,30 +22,39 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <GridSplitter Grid.Row="1" Height="5" VerticalAlignment="Center"/>
-        <TabControl Grid.Row="2">
-            <TabItem Header="Addition/Subtraction">
-                <StackPanel Background="#FFE5E5E5">
-                    <Canvas x:Name="addSubtractCanvas" MinHeight="100"/>
-                    <Button Content="Add Vectors" Click="Add_Button_Click"/>
-                    <Button Content="Subtract Vectors" Click="Subtract_Button_Click"/>                </StackPanel>
-            </TabItem>
-            <TabItem Header="Multiplication" Height="22" VerticalAlignment="Bottom">
-                <Grid Background="#FFE5E5E5"/>
-            </TabItem>
-            <TabItem Header="Normalization" Height="22" VerticalAlignment="Bottom">
-                <Grid Background="#FFE5E5E5"/>
-            </TabItem>
-            <TabItem Header="Length/Magnitude" Height="22" VerticalAlignment="Bottom">
-                <Grid Background="#FFE5E5E5"/>
-            </TabItem>
-            <TabItem Header="Dot Product" Height="22" VerticalAlignment="Bottom">
-                <Grid Background="#FFE5E5E5"/>
-            </TabItem>
-            <TabItem Header="Cross Product" Height="22" VerticalAlignment="Bottom">
-                <Grid Background="#FFE5E5E5"/>
-            </TabItem>
-        </TabControl>
 
+        <GridSplitter Grid.Row="1" Height="5" VerticalAlignment="Center"/>
+
+        <DockPanel Grid.Row="2">
+            <Button DockPanel.Dock="Bottom" Height="25" Content="Save result" Click="Save_Button_Click"/>
+
+            <TabControl DockPanel.Dock="Top" >
+                <TabItem Header="Addition/Subtraction">
+                    <DockPanel Background="#FFE5E5E5">
+                        <Button Content="Add Vectors" Click="Add_Button_Click" DockPanel.Dock="Bottom"/>
+                        <Button Content="Subtract Vectors" Click="Subtract_Button_Click" DockPanel.Dock="Bottom"/>
+                        <Canvas x:Name="addSubtractCanvas"/>
+                    </DockPanel>
+                </TabItem>
+                <TabItem Header="Multiplication" Height="22" VerticalAlignment="Bottom">
+                    <DockPanel Background="#FFE5E5E5">
+                        <Button Content="Multiply Vectors" Click="Multiply_Button_Click" DockPanel.Dock="Bottom"/>
+                        <Canvas x:Name="multiplyCanvas"/>
+                    </DockPanel>
+                </TabItem>
+                <TabItem Header="Normalization" Height="22" VerticalAlignment="Bottom">
+                    <Grid Background="#FFE5E5E5"/>
+                </TabItem>
+                <TabItem Header="Length/Magnitude" Height="22" VerticalAlignment="Bottom">
+                    <Grid Background="#FFE5E5E5"/>
+                </TabItem>
+                <TabItem Header="Dot Product" Height="22" VerticalAlignment="Bottom">
+                    <Grid Background="#FFE5E5E5"/>
+                </TabItem>
+                <TabItem Header="Cross Product" Height="22" VerticalAlignment="Bottom">
+                    <Grid Background="#FFE5E5E5"/>
+                </TabItem>
+            </TabControl>
+        </DockPanel>
     </Grid>
 </Window>

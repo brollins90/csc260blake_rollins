@@ -35,14 +35,24 @@ namespace LinearAlgebraCalcLib
             return new Vector3(v1.X - v2.X, v1.Y - v2.Y, v1.Z - v2.Z);
         }
 
-        public static Vector3 operator *(Vector3 v1, double d1)
+        public static Vector3 operator *(Vector3 v1, Fraction scalar)
         {
-            return new Vector3(v1.X * d1, v1.Y * d1, v1.Z * d1);
+            return new Vector3(v1.X * scalar, v1.Y * scalar, v1.Z * scalar);
         }
 
-        public static Vector3 operator *(double d1, Vector3 v1)
+        public static Vector3 operator *(Fraction scalar, Vector3 v1)
         {
-            return v1 * d1;
+            return v1 * scalar;
+        }
+
+        public static Vector3 operator *(Vector3 v1, double scalar)
+        {
+            return new Vector3(v1.X * scalar, v1.Y * scalar, v1.Z * scalar);
+        }
+
+        public static Vector3 operator *(double scalar, Vector3 v1)
+        {
+            return v1 * scalar;
         }
 
         public static Vector3 operator /(Vector3 v1, Vector3 v2)

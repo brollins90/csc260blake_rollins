@@ -26,13 +26,9 @@
         <TabControl Grid.Row="2">
             <TabItem Header="Addition/Subtraction">
                 <StackPanel Background="#FFE5E5E5">
-                    <StackPanel.Resources>
-                        <Style TargetType="Grid" >
-                            <Setter Property="Margin" Value="5,5,5,5"/>
-                        </Style>
-                    </StackPanel.Resources>
-                    <b:Vector2Control></b:Vector2Control>
-                </StackPanel>
+                    <Canvas x:Name="addSubtractCanvas" MinHeight="100"/>
+                    <Button Content="Add Vectors" Click="Add_Button_Click"/>
+                    <Button Content="Subtract Vectors" Click="Subtract_Button_Click"/>                </StackPanel>
             </TabItem>
             <TabItem Header="Multiplication" Height="22" VerticalAlignment="Bottom">
                 <Grid Background="#FFE5E5E5"/>

@@ -117,9 +117,18 @@ namespace LinearAlgebraCalcLib
         // http://stackoverflow.com/questions/2941048/how-to-simplify-fractions-in-c
         void SimplifyFraction()
         {
+            bool negative = (this.Top < 0 ^ this.Bottom < 0);
+            Top = Math.Abs(Top);
+            Bottom = Math.Abs(Bottom);
+
             int gcd = GCD();
             Top /= gcd;
             Bottom /= gcd;
+
+            if (negative)
+            {
+                Top = Top * -1;
+            }
         }
 
         private int GCD()

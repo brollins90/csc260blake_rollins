@@ -1,0 +1,37 @@
+﻿@model _2_ActionResults.Models.Character
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/Site.css" />
+</head>
+<body>
+    <div class="body">
+        <div class="character">
+            <div class="character-header">@Model.Name</div>
+            <div class="character-header2">Level: @Model.Level  |  Health Points: @Model.HealthPoints</div>
+            <div class="character-image"><img src="~/Content/Images/MaleFighter.png" width="200" /></div>
+            <div class="character-attributes">Attributes:
+                @foreach (var i in Model.Attributes.Select((kv, index) => new { index, kv }))
+                {
+                    <div class="attribute@(i.index%2 == 0 ? "" : "-odd")">@i.kv.Key : @i.kv.Value</div>
+                }
+            </div>
+        </div>
+        <ul class="nav">
+            <li class="nav-button">@Html.ActionLink("Plain", "GetCharacterString")</li>
+            <li class="nav-button">@Html.ActionLink("JSON", "GetCharacterJson")</li>
+            <li class="nav-button">@Html.ActionLink("XML", "GetCharacterXml")</li>
+            <li class="nav-button">@Html.ActionLink("File", "GetFile")</li>
+            <li class="nav-button">@Html.ActionLink("404", "NotFound")</li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -12,7 +12,7 @@ namespace SortOne
         static void Main(string[] args)
         {
             List<int> bigList = new List<int>();
-            for (int i = 1000; i > 0; i--)
+            for (int i = 2000; i > 0; i--)
             {
                 bigList.Add(i);
             }
@@ -39,13 +39,13 @@ namespace SortOne
             Console.WriteLine();
 
 
-            Console.WriteLine("Running a Bubble sort on the big list.");
-            Stopwatch stopwatch = Stopwatch.StartNew();
-            BubbleSort(bigList);
-            stopwatch.Stop();
-            Console.WriteLine("Done with the bubble sort- " + stopwatch.ElapsedMilliseconds);
+            //Console.WriteLine("Running a Bubble sort on the big list.");
+            //Stopwatch stopwatch = Stopwatch.StartNew();
+            //BubbleSort(bigList);
+            //stopwatch.Stop();
+            //Console.WriteLine("Done with the bubble sort- " + stopwatch.ElapsedMilliseconds);
 
-            Console.ReadKey();
+            //Console.ReadKey();
         }
 
         private static void PrintList(List<int> list)
@@ -67,6 +67,7 @@ namespace SortOne
                 bool madeASwitch = false;
                 for (int i = 0; i < list.Count - 1 && !madeASwitch; i++)
                 {
+                    //PrintList(list);
                     int current = list[i];
                     int next = list[i + 1];
 

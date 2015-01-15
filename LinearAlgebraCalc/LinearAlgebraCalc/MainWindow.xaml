@@ -2,7 +2,11 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:b="clr-namespace:LinearAlgebraCalc.UserControls"
+        xmlns:vc="clr-namespace:LinearAlgebraCalc.ValueConverters"
         Title="MainWindow" Height="550" Width="700">
+    <Window.Resources>
+        <vc:Vector3ToStringValueConverter x:Key="Vector3ToStringValueConverter"/>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30*"/>
@@ -12,7 +16,7 @@
         <DataGrid Grid.Row="0" ItemsSource="{Binding Path=VectorCollection.Vectors}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn Header="Use" Binding="{Binding Path=Use}"/>
-                <DataGridTextColumn Header="Vector" Binding="{Binding Path=Vector}"/>
+                <DataGridTextColumn Header="Vector" Binding="{Binding Path=Vector, Converter={StaticResource Vector3ToStringValueConverter}}"/>
                 <DataGridTemplateColumn Header="Remove">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

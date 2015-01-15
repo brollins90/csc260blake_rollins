@@ -76,6 +76,36 @@ namespace LinearAlgebraCalcLib
             return ApproximateFraction(d);
         }
 
+        public static Fraction Parse(string s)
+        {
+            try
+            {
+                if (s.Contains('/'))
+                {
+                    if (s.Contains('.')) {
+                        // shouldnt have a / and a .
+                        throw new FormatException();
+                    }
+                    string[] strings = s.Split('/');
+                    if (strings.Count() > 2)
+                    {
+                        throw new FormatException();
+                    }
+                    int top = int.Parse(strings[0]);
+                    int bottom = int.Parse(strings[1]);
+                    return new Fraction(top, bottom);
+                }
+                else // no slash
+                {
+                    return ApproximateFraction(double.Parse(s));
+                }
+            }
+            catch (Exception e)
+            {
+                throw new FormatException();
+            }
+        }
+
         public double ToDouble(int decimalPlaces)
         {
             if (this.Bottom == 0)

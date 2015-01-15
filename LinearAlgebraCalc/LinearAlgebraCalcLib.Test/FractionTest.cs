@@ -102,5 +102,51 @@ namespace LinearAlgebraCalcLib.Test
             Assert.AreEqual(1, f3.Top);
             Assert.AreEqual(4, f3.Bottom);
         }
+
+        [TestMethod]
+        public void FractionTestParse1()
+        {
+            string s = "10";
+
+            Fraction f1 = Fraction.Parse(s);
+
+            Assert.AreEqual(10, f1.Top);
+            Assert.AreEqual(1, f1.Bottom);
+        }
+
+        [TestMethod]
+        public void FractionTestParse2()
+        {
+            string s = "10/2";
+
+            Fraction f1 = Fraction.Parse(s);
+
+            Assert.AreEqual(5, f1.Top);
+            Assert.AreEqual(1, f1.Bottom);
+        }
+
+        [TestMethod]
+        public void FractionTestParse3()
+        {
+            string s = "5.5";
+
+            Fraction f1 = Fraction.Parse(s);
+
+            Assert.AreEqual(11, f1.Top);
+            Assert.AreEqual(2, f1.Bottom);
+        }
+
+        [TestMethod]
+        public void FractionTestParse4()
+        {
+            string s = ".3333";
+
+            Fraction f1 = Fraction.Parse(s);
+
+            Assert.AreEqual(1, f1.Top);
+            Assert.AreEqual(3, f1.Bottom);
+            //Assert.AreEqual(3236, f1.Top);
+            //Assert.AreEqual(9709, f1.Bottom);
+        }
     }
 }

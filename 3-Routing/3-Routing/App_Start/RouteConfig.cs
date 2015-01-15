@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace ScratchMVC5
+namespace _3_Routing
 {
     public class RouteConfig
     {
@@ -14,9 +14,15 @@ namespace ScratchMVC5
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "OldIndex",
-                url: "Index",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                name: "About",
+                url: "Moo",
+                defaults: new { controller = "Home", action = "About" }
+            );
+
+            routes.MapRoute(
+                name: "JustCount",
+                url: "{numberOfMoos}",
+                defaults: new { controller = "Home", action = "Moo" }
             );
 
             routes.MapRoute(
@@ -24,6 +30,8 @@ namespace ScratchMVC5
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            // Index{id}/{*stuff}
 
         }
     }

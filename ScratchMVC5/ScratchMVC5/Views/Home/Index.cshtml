@@ -1,4 +1,5 @@
-﻿
+﻿@model ScratchMVC5.Models.IndexViewModel
+
 @{
     Layout = null;
 }
@@ -11,8 +12,20 @@
     <title>Index</title>
 </head>
 <body>
-    <div> 
-        Hello.  You can click @Html.ActionLink("here", "SecondPage") to go to the other page.
+    <div>
+        <h1>@DateTime.Now</h1>
+        <h1>Controller @Model.Controller</h1>
+        <h1>Action @Model.Action</h1>
+        <h1>ID @Model.Id</h1>
+        @Html.BeginForm()
+        {
+        @Html.LabelFor(x => x.Controller)
+        @Html.TextBoxFor(x => x.Controller)
+        @Html.LabelFor(x => x.Action)
+        @Html.TextBoxFor(x => x.Action)
+
+        <input type="submit" />
+        }
     </div>
 </body>
 </html>

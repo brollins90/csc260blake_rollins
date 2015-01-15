@@ -64,6 +64,7 @@
     <Compile Include="UserControls\Vector3Control.xaml.cs">
       <DependentUpon>Vector3Control.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ValueConverters\Vector3ToStringValueConverter.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

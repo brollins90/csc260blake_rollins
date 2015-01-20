@@ -84,6 +84,7 @@ namespace LinearAlgebraCalcLib
                 {
                     if (s.Contains('.')) {
                         // shouldnt have a / and a .
+                        // i can fix this, but I am lazy
                         throw new FormatException();
                     }
                     string[] strings = s.Split('/');

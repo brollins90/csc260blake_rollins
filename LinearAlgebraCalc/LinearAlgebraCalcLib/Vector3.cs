@@ -159,5 +159,31 @@ namespace LinearAlgebraCalcLib
             hash *= 23 + Z.GetHashCode();
             return hash;
         }
+
+        public static Vector3 Parse(string vectorString)
+        {
+            Fraction x;
+            Fraction y;
+            Fraction z;
+            try
+            {
+                vectorString = vectorString.Replace('(', ' ');
+                vectorString = vectorString.Replace(')', ' ');
+                string[] strings = vectorString.Split(',');
+                if (strings.Count() > 3)
+                {
+                    throw new FormatException();
+                }
+                x = Fraction.Parse(strings[0]);
+                y = Fraction.Parse(strings[1]);
+                z = Fraction.Parse(strings[2]);
+            }
+            catch (Exception)
+            {
+                throw new FormatException();
+            }
+            return new Vector3(x, y, z);
+
+        }
     }
 }

@@ -27,5 +27,11 @@ namespace _3_Routing.Controllers
             CowViewModel c = cow ?? new CowViewModel();
             return View(c);
         }
+
+        public ActionResult JustMoo(JustMooViewModel justMoo)
+        {
+            JustMooViewModel vm = justMoo ?? new JustMooViewModel();
+            return View(vm);
+        }
     }
 }

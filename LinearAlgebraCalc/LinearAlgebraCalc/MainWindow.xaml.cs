@@ -18,6 +18,9 @@ using LinearAlgebraCalcLib;
 
 namespace LinearAlgebraCalc
 {
+
+    // http://blogs.u2u.be/diederik/post/2009/09/30/Validation-in-a-WPF-DataGrid.aspx
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -26,11 +29,16 @@ namespace LinearAlgebraCalc
         private VectorModelCollection _vectorCollection;
         public VectorModelCollection VectorCollection { get { return _vectorCollection; } set { _vectorCollection = value; } }
 
+        public Fraction scalarValue { get; set; }
+
         Vector3 result;
 
         public MainWindow()
         {
             InitializeComponent();
+            
+            scalarValue = new Fraction(1, 2);
+
             this.result = null;
             this.DataContext = this;
             this.VectorCollection = new VectorModelCollection();
@@ -142,15 +150,14 @@ namespace LinearAlgebraCalc
             }
 
             Vector3 vectToUse = l[0];
-            Fraction scalar = new Fraction(1, 2);
 
             int y = 10;
             Text(multiplyCanvas, 10, y, "Multiply:", Color.FromRgb(255, 0, 0));
             foreach (Vector3 m in l)
             {
                 Text(multiplyCanvas, 10, y += 15, vectToUse.ToString(), Color.FromRgb(255, 0, 0));
-                Text(multiplyCanvas, 10, y += 15, "x " + scalar.ToString(), Color.FromRgb(255, 0, 0));
-                result = vectToUse * scalar;
+                Text(multiplyCanvas, 10, y += 15, "x " + scalarValue.ToString(), Color.FromRgb(255, 0, 0));
+                result = vectToUse * scalarValue;
             }
             Text(multiplyCanvas, 10, y += 15, "result:", Color.FromRgb(255, 0, 0));
             Text(multiplyCanvas, 10, y += 15, result.ToString(), Color.FromRgb(255, 0, 0));

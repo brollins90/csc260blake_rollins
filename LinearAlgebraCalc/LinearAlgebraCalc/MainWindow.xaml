@@ -3,8 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:b="clr-namespace:LinearAlgebraCalc.UserControls"
         xmlns:vc="clr-namespace:LinearAlgebraCalc.ValueConverters"
-        Title="MainWindow" Height="550" Width="700">
+        xmlns:vr="clr-namespace:LinearAlgebraCalc.ValidationRules"
+        Title="Vector calculator" Height="550" Width="700">
     <Window.Resources>
+        <vc:FractionToStringValueConverter x:Key="FractionToStringValueConverter"/>
         <vc:Vector3ToStringValueConverter x:Key="Vector3ToStringValueConverter"/>
     </Window.Resources>
     <Grid>
@@ -13,10 +15,55 @@
             <RowDefinition Height="5"/>
             <RowDefinition Height="60*"/>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="0" ItemsSource="{Binding Path=VectorCollection.Vectors}" AutoGenerateColumns="False">
+        <DataGrid Grid.Row="0" ItemsSource="{Binding Path=VectorCollection.Vectors}" 
+                  AutoGenerateColumns="False">
+
+            <DataGrid.Resources>
+                <Style x:Key="errorStyle" TargetType="{x:Type TextBox}">
+                    <Setter Property="Padding" Value="-2"/>
+                    <Style.Triggers>
+                        <Trigger Property="Validation.HasError" Value="True">
+                            <Setter Property="Background" Value="Red"/>
+                            <Setter Property="ToolTip" 
+                            Value="{Binding RelativeSource={RelativeSource Self},
+                            Path=(Validation.Errors)[0].ErrorContent}"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+                
+                <Style TargetType="{x:Type DataGridRow}">
+                    <Setter Property="ValidationErrorTemplate">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <Image Source="/Content/error.jpg"
+                            ToolTip="{Binding RelativeSource={
+                                RelativeSource FindAncestor,
+                                AncestorType={x:Type DataGridRow}},
+                                Path=(Validation.Errors)[0].ErrorContent}"
+                            Margin="0"
+                            Width="11" Height="11" />
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </DataGrid.Resources>
+
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn Header="Use" Binding="{Binding Path=Use}"/>
-                <DataGridTextColumn Header="Vector" Binding="{Binding Path=Vector, Converter={StaticResource Vector3ToStringValueConverter}}"/>
+                
+                <DataGridTextColumn Header="Vector" >
+                    <DataGridTextColumn.Binding>
+                        <Binding Path="Vector">
+                            <Binding.Converter>
+                                <vc:Vector3ToStringValueConverter/>
+                            </Binding.Converter>
+                            <Binding.ValidationRules>
+                                <vr:VectorParseValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+
                 <DataGridTemplateColumn Header="Remove">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -43,6 +90,8 @@
                 <TabItem Header="Multiplication" Height="22" VerticalAlignment="Bottom">
                     <DockPanel Background="#FFE5E5E5">
                         <Button Content="Multiply Vector" Click="Multiply_Button_Click" DockPanel.Dock="Bottom"/>
+                        <TextBox x:Name="scalarBox" Width="40" Height="40" Text="{Binding Path=scalarValue, Converter={StaticResource FractionToStringValueConverter}}" DockPanel.Dock="Right"/>
+                        <Label x:Name="scalarBoxLabel" Height="40" Content="Scalar value: " DockPanel.Dock="Right"/>
                         <Canvas x:Name="multiplyCanvas"/>
                     </DockPanel>
                 </TabItem>

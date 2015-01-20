@@ -9,32 +9,29 @@ using System.Windows.Data;
 namespace LinearAlgebraCalc.ValueConverters
 {
 
-    public class Vector3ToStringValueConverter : IValueConverter
+    public class FractionToStringValueConverter : IValueConverter
     {
-        // vector to string
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            if (value == null)
-                value = new Vector3();
-            Vector3 r = (Vector3)value;
+            Fraction r = (Fraction)value;
             return r.ToString();
         }
 
-        // String to vector
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            string vectorString = (string)value;
+            string fractionString = (string)value;
+            Fraction x;
             try
             {
-                Vector3 vec = Vector3.Parse(vectorString);
-                return vec;
+                fractionString = fractionString.Replace('(', ' ');
+                fractionString = fractionString.Replace(')', ' ');
+                x = Fraction.Parse(fractionString);
             }
             catch (Exception)
             {
-                return new Vector3();
-                return Binding.DoNothing;
                 throw new FormatException();
             }
+            return x;
         }
     }
 }

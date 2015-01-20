@@ -64,6 +64,8 @@
     <Compile Include="UserControls\Vector3Control.xaml.cs">
       <DependentUpon>Vector3Control.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ValidationRules\VectorParseValidationRule.cs" />
+    <Compile Include="ValueConverters\FractionToStringValueConverter.cs" />
     <Compile Include="ValueConverters\Vector3ToStringValueConverter.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -118,6 +120,9 @@
       <Project>{708ff611-0053-42aa-a34f-7d9d7621b35e}</Project>
       <Name>LinearAlgebraCalcLib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\error.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

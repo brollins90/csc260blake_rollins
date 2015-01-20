@@ -90,6 +90,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CowViewModel.cs" />
+    <Compile Include="Models\JustMooViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -98,6 +99,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Moo.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\JustMoo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

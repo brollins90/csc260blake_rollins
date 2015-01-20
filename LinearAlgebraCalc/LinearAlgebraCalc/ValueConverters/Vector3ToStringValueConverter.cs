@@ -14,10 +14,16 @@ namespace LinearAlgebraCalc.ValueConverters
         // vector to string
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            if (value == null)
-                value = new Vector3();
-            Vector3 r = (Vector3)value;
-            return r.ToString();
+            //if (value == null)
+            //    value = new Vector3();
+            if (value is Vector3)
+                return ((Vector3)value).ToString();
+            else if (value is Vector2)
+                return ((Vector2)value).ToString();
+
+            value = new Vector3();
+            return value.ToString();
+                
         }
 
         // String to vector

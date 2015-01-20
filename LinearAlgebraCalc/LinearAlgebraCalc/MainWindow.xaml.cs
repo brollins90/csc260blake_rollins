@@ -31,7 +31,7 @@ namespace LinearAlgebraCalc
 
         public Fraction scalarValue { get; set; }
 
-        Vector3 result;
+        Vector2 result;
 
         public MainWindow()
         {
@@ -81,7 +81,7 @@ namespace LinearAlgebraCalc
         {
             addSubtractCanvas.Children.Clear();
             result = null;
-            List<Vector3> l = VectorCollection.GetSelectedVectors();
+            List<Vector2> l = VectorCollection.GetSelectedVectors();
 
             if (l.Count() < 1)
             {
@@ -91,7 +91,7 @@ namespace LinearAlgebraCalc
 
             int y = 10;
             Text(addSubtractCanvas, 10, y, "Add:", Color.FromRgb(255, 0, 0));
-            foreach (Vector3 m in l)
+            foreach (Vector2 m in l)
             {
                     if (result == null)
                     {
@@ -111,7 +111,7 @@ namespace LinearAlgebraCalc
         {
             addSubtractCanvas.Children.Clear();
             result = null;
-            List<Vector3> l = VectorCollection.GetSelectedVectors();
+            List<Vector2> l = VectorCollection.GetSelectedVectors();
 
             if (l.Count() < 1)
             {
@@ -121,7 +121,7 @@ namespace LinearAlgebraCalc
 
             int y = 10;
             Text(addSubtractCanvas, 10, y, "Subtract:", Color.FromRgb(255, 0, 0));
-            foreach (Vector3 m in l)
+            foreach (Vector2 m in l)
             {
                 if (result == null)
                 {
@@ -141,7 +141,7 @@ namespace LinearAlgebraCalc
         {
             multiplyCanvas.Children.Clear();
             result = null;
-            List<Vector3> l = VectorCollection.GetSelectedVectors();
+            List<Vector2> l = VectorCollection.GetSelectedVectors();
 
             if (l.Count() != 1)
             {
@@ -149,11 +149,11 @@ namespace LinearAlgebraCalc
                 return;
             }
 
-            Vector3 vectToUse = l[0];
+            Vector2 vectToUse = l[0];
 
             int y = 10;
             Text(multiplyCanvas, 10, y, "Multiply:", Color.FromRgb(255, 0, 0));
-            foreach (Vector3 m in l)
+            foreach (Vector2 m in l)
             {
                 Text(multiplyCanvas, 10, y += 15, vectToUse.ToString(), Color.FromRgb(255, 0, 0));
                 Text(multiplyCanvas, 10, y += 15, "x " + scalarValue.ToString(), Color.FromRgb(255, 0, 0));
@@ -167,7 +167,7 @@ namespace LinearAlgebraCalc
         {
             normalizeCanvas.Children.Clear();
             result = null;
-            List<Vector3> l = VectorCollection.GetSelectedVectors();
+            List<Vector2> l = VectorCollection.GetSelectedVectors();
 
             if (l.Count() != 1)
             {
@@ -175,7 +175,7 @@ namespace LinearAlgebraCalc
                 return;
             }
 
-            Vector3 vectToUse = l[0];
+            Vector2 vectToUse = l[0];
 
             int y = 10;
             Text(normalizeCanvas, 10, y, "Normailze:", Color.FromRgb(255, 0, 0));
@@ -188,7 +188,7 @@ namespace LinearAlgebraCalc
         {
             lengthCanvas.Children.Clear();
             result = null;
-            List<Vector3> l = VectorCollection.GetSelectedVectors();
+            List<Vector2> l = VectorCollection.GetSelectedVectors();
 
             if (l.Count() != 1)
             {
@@ -196,7 +196,7 @@ namespace LinearAlgebraCalc
                 return;
             }
 
-            Vector3 vectToUse = l[0];
+            Vector2 vectToUse = l[0];
 
             int y = 10;
             Text(lengthCanvas, 10, y, "Length:", Color.FromRgb(255, 0, 0));
@@ -209,7 +209,7 @@ namespace LinearAlgebraCalc
         {
             crossCanvas.Children.Clear();
             result = null;
-            List<Vector3> l = VectorCollection.GetSelectedVectors();
+            List<Vector2> l = VectorCollection.GetSelectedVectors();
 
             if (l.Count() != 2)
             {
@@ -217,8 +217,18 @@ namespace LinearAlgebraCalc
                 return;
             }
 
-            Vector3 vecta = l[0];
-            Vector3 vectb = l[1];
+            if (l[0] is Vector3)
+            {
+                Text(crossCanvas, 10, 10, "The first vector is only a Vector2.", Color.FromRgb(255, 0, 0));
+                return;
+            }
+            if (!l[1] is Vector3)
+            {
+                Text(crossCanvas, 10, 10, "The second vector is only a Vector2.", Color.FromRgb(255, 0, 0));
+                return;
+            }
+            Vector3 vecta = l[0] as Vector3;
+            Vector3 vectb = l[1] as Vector3;
 
             int y = 10;
             Text(crossCanvas, 10, y, "Cross product:", Color.FromRgb(255, 0, 0));
@@ -234,7 +244,7 @@ namespace LinearAlgebraCalc
         {
             dotCanvas.Children.Clear();
             result = null;
-            List<Vector3> l = VectorCollection.GetSelectedVectors();
+            List<Vector2> l = VectorCollection.GetSelectedVectors();
 
             if (l.Count() != 2)
             {
@@ -242,8 +252,8 @@ namespace LinearAlgebraCalc
                 return;
             }
 
-            Vector3 vecta = l[0];
-            Vector3 vectb = l[1];
+            Vector2 vecta = l[0];
+            Vector2 vectb = l[1];
 
             int y = 10;
             Text(dotCanvas, 10, y, "Dot product:", Color.FromRgb(255, 0, 0));

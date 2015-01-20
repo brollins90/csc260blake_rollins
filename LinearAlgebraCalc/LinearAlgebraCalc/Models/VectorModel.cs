@@ -14,9 +14,9 @@ namespace LinearAlgebraCalc.Models
             set { _Use = value; }
         }
 
-        private Vector3 _Vector;
+        private Vector2 _Vector;
 
-        public Vector3 Vector
+        public Vector2 Vector
         {
             get { return _Vector; }
             set { _Vector = value; }

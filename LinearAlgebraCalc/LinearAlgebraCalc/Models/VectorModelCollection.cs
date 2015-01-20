@@ -55,9 +55,9 @@ namespace LinearAlgebraCalc.Models
             Vectors.Add(vect);
         }
 
-        public List<Vector3> GetSelectedVectors()
+        public List<Vector2> GetSelectedVectors()
         {
-            List<Vector3> l = new List<Vector3>();
+            List<Vector2> l = new List<Vector2>();
             foreach (VectorModel m in Vectors)
             {
                 if (m.Use)

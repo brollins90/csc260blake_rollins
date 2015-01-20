@@ -8,7 +8,7 @@ using System.Windows.Controls;
 
 namespace LinearAlgebraCalc.ValidationRules
 {
-    public class VectorParseValidationRule : ValidationRule
+    public class Vector2ParseValidationRule : ValidationRule
     {
 
         public override ValidationResult Validate(object value, System.Globalization.CultureInfo cultureInfo)
@@ -16,7 +16,7 @@ namespace LinearAlgebraCalc.ValidationRules
             try
             {
                 string vectorString = (string)value;
-                Vector3 vec = Vector3.Parse(vectorString);
+                Vector2 vec = Vector2.Parse(vectorString);
                 return new ValidationResult(true, null);
             }
             catch (Exception e)

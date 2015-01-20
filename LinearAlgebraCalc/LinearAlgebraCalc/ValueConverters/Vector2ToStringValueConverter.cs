@@ -9,7 +9,7 @@ using System.Windows.Data;
 namespace LinearAlgebraCalc.ValueConverters
 {
 
-    public class Vector3ToStringValueConverter : IValueConverter
+    public class Vector2ToStringValueConverter : IValueConverter
     {
         // vector to string
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
@@ -18,7 +18,7 @@ namespace LinearAlgebraCalc.ValueConverters
             {
                 value = new Vector2();
             }
-            return value.ToString();                
+            return value.ToString();
         }
 
         // String to vector
@@ -27,12 +27,12 @@ namespace LinearAlgebraCalc.ValueConverters
             string vectorString = (string)value;
             try
             {
-                Vector3 vec = Vector3.Parse(vectorString);
+                Vector2 vec = Vector2.Parse(vectorString);
                 return vec;
             }
             catch (Exception)
             {
-                return new Vector3();
+                return new Vector2();
             }
         }
     }

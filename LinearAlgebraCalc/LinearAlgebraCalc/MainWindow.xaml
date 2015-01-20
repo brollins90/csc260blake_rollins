@@ -1,125 +1,244 @@
 ﻿<Window x:Class="LinearAlgebraCalc.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:b="clr-namespace:LinearAlgebraCalc.UserControls"
         xmlns:vc="clr-namespace:LinearAlgebraCalc.ValueConverters"
         xmlns:vr="clr-namespace:LinearAlgebraCalc.ValidationRules"
         Title="Vector calculator" Height="550" Width="700">
     <Window.Resources>
         <vc:FractionToStringValueConverter x:Key="FractionToStringValueConverter"/>
+        <vc:Vector2ToStringValueConverter x:Key="Vector2ToStringValueConverter"/>
         <vc:Vector3ToStringValueConverter x:Key="Vector3ToStringValueConverter"/>
     </Window.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30*"/>
-            <RowDefinition Height="5"/>
-            <RowDefinition Height="60*"/>
-        </Grid.RowDefinitions>
-        <DataGrid Grid.Row="0" ItemsSource="{Binding Path=VectorCollection.Vectors}" 
-                  AutoGenerateColumns="False">
+    <StackPanel>
+        <TabControl>
+            <TabItem Header="Vector 2">
+                <DockPanel Background="#FFE5E5E5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30*"/>
+                            <RowDefinition Height="5"/>
+                            <RowDefinition Height="60*"/>
+                        </Grid.RowDefinitions>
+                        <DataGrid Grid.Row="0" ItemsSource="{Binding Path=VectorCollection2.Vectors}" AutoGenerateColumns="False">
 
-            <DataGrid.Resources>
-                <Style x:Key="errorStyle" TargetType="{x:Type TextBox}">
-                    <Setter Property="Padding" Value="-2"/>
-                    <Style.Triggers>
-                        <Trigger Property="Validation.HasError" Value="True">
-                            <Setter Property="Background" Value="Red"/>
-                            <Setter Property="ToolTip" 
+                            <DataGrid.Resources>
+                                <Style x:Key="errorStyle" TargetType="{x:Type TextBox}">
+                                    <Setter Property="Padding" Value="-2"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="Validation.HasError" Value="True">
+                                            <Setter Property="Background" Value="Red"/>
+                                            <Setter Property="ToolTip" 
                             Value="{Binding RelativeSource={RelativeSource Self},
                             Path=(Validation.Errors)[0].ErrorContent}"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-                
-                <Style TargetType="{x:Type DataGridRow}">
-                    <Setter Property="ValidationErrorTemplate">
-                        <Setter.Value>
-                            <ControlTemplate>
-                                <Image Source="/Content/error.jpg"
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+
+                                <Style TargetType="{x:Type DataGridRow}">
+                                    <Setter Property="ValidationErrorTemplate">
+                                        <Setter.Value>
+                                            <ControlTemplate>
+                                                <Image Source="/Content/error.jpg"
                             ToolTip="{Binding RelativeSource={
                                 RelativeSource FindAncestor,
                                 AncestorType={x:Type DataGridRow}},
                                 Path=(Validation.Errors)[0].ErrorContent}"
                             Margin="0"
                             Width="11" Height="11" />
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </DataGrid.Resources>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </DataGrid.Resources>
 
-            <DataGrid.Columns>
-                <DataGridCheckBoxColumn Header="Use" Binding="{Binding Path=Use}"/>
-                
-                <DataGridTextColumn Header="Vector" >
-                    <DataGridTextColumn.Binding>
-                        <Binding Path="Vector">
-                            <Binding.Converter>
-                                <vc:Vector3ToStringValueConverter/>
-                            </Binding.Converter>
-                            <Binding.ValidationRules>
-                                <vr:VectorParseValidationRule/>
-                            </Binding.ValidationRules>
-                        </Binding>
-                    </DataGridTextColumn.Binding>
-                </DataGridTextColumn>
+                            <DataGrid.Columns>
+                                <DataGridCheckBoxColumn Header="Use" Binding="{Binding Path=Use}"/>
 
-                <DataGridTemplateColumn Header="Remove">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Command="Delete" Content="X"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+                                <DataGridTextColumn Header="Vector" >
+                                    <DataGridTextColumn.Binding>
+                                        <Binding Path="Vector">
+                                            <Binding.Converter>
+                                                <vc:Vector2ToStringValueConverter/>
+                                            </Binding.Converter>
+                                            <Binding.ValidationRules>
+                                                <vr:Vector2ParseValidationRule/>
+                                            </Binding.ValidationRules>
+                                        </Binding>
+                                    </DataGridTextColumn.Binding>
+                                </DataGridTextColumn>
 
-        <GridSplitter Grid.Row="1" Height="5" VerticalAlignment="Center"/>
+                                <DataGridTemplateColumn Header="Remove">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Command="Delete" Content="X"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
 
-        <DockPanel Grid.Row="2">
-            <Button DockPanel.Dock="Bottom" Height="25" Content="Save result" Click="Save_Button_Click"/>
+                        <GridSplitter Grid.Row="1" Height="5" VerticalAlignment="Center"/>
 
-            <TabControl DockPanel.Dock="Top" >
-                <TabItem Header="Addition/Subtraction">
-                    <DockPanel Background="#FFE5E5E5">
-                        <Button Content="Add Vectors" Click="Add_Button_Click" DockPanel.Dock="Bottom"/>
-                        <Button Content="Subtract Vectors" Click="Subtract_Button_Click" DockPanel.Dock="Bottom"/>
-                        <Canvas x:Name="addSubtractCanvas"/>
-                    </DockPanel>
-                </TabItem>
-                <TabItem Header="Multiplication" Height="22" VerticalAlignment="Bottom">
-                    <DockPanel Background="#FFE5E5E5">
-                        <Button Content="Multiply Vector" Click="Multiply_Button_Click" DockPanel.Dock="Bottom"/>
-                        <TextBox x:Name="scalarBox" Width="40" Height="40" Text="{Binding Path=scalarValue, Converter={StaticResource FractionToStringValueConverter}}" DockPanel.Dock="Right"/>
-                        <Label x:Name="scalarBoxLabel" Height="40" Content="Scalar value: " DockPanel.Dock="Right"/>
-                        <Canvas x:Name="multiplyCanvas"/>
-                    </DockPanel>
-                </TabItem>
-                <TabItem Header="Normalization" Height="22" VerticalAlignment="Bottom">
-                    <DockPanel Background="#FFE5E5E5">
-                        <Button Content="Normalize Vectors" Click="Normalize_Button_Click" DockPanel.Dock="Bottom"/>
-                        <Canvas x:Name="normalizeCanvas"/>
-                    </DockPanel>
-                </TabItem>
-                <TabItem Header="Length/Magnitude" Height="22" VerticalAlignment="Bottom">
-                    <DockPanel Background="#FFE5E5E5">
-                        <Button Content="Calculate length" Click="Length_Button_Click" DockPanel.Dock="Bottom"/>
-                        <Canvas x:Name="lengthCanvas"/>
-                    </DockPanel>
-                </TabItem>
-                <TabItem Header="Dot Product" Height="22" VerticalAlignment="Bottom">
-                    <DockPanel Background="#FFE5E5E5">
-                        <Button Content="Calculate dot" Click="Dot_Button_Click" DockPanel.Dock="Bottom"/>
-                        <Canvas x:Name="dotCanvas"/>
-                    </DockPanel>
-                </TabItem>
-                <TabItem Header="Cross Product" Height="22" VerticalAlignment="Bottom">
-                    <DockPanel Background="#FFE5E5E5">
-                        <Button Content="Calculate cross" Click="Cross_Button_Click" DockPanel.Dock="Bottom"/>
-                        <Canvas x:Name="crossCanvas"/>
-                    </DockPanel>
-                </TabItem>
-            </TabControl>
-        </DockPanel>
-    </Grid>
+                        <DockPanel Grid.Row="2">
+                            <Button DockPanel.Dock="Bottom" Height="25" Content="Save result" Click="Save2_Button_Click"/>
+
+                            <TabControl DockPanel.Dock="Top" >
+                                <TabItem Header="Addition/Subtraction">
+                                    <DockPanel Background="#FFE5E5E5">
+                                        <Button Content="Add Vectors" Click="Add2_Button_Click" DockPanel.Dock="Bottom"/>
+                                        <Button Content="Subtract Vectors" Click="Subtract2_Button_Click" DockPanel.Dock="Bottom"/>
+                                        <Canvas x:Name="addSubtractCanvas2" MinHeight="200"/>
+                                    </DockPanel>
+                                </TabItem>
+                                <TabItem Header="Multiplication" Height="22" VerticalAlignment="Bottom">
+                                    <DockPanel Background="#FFE5E5E5">
+                                        <Button Content="Multiply Vector" Click="Multiply2_Button_Click" DockPanel.Dock="Bottom"/>
+                                        <TextBox x:Name="scalarBox2" Width="40" Height="40" Text="{Binding Path=scalarValue2, Converter={StaticResource FractionToStringValueConverter}}" DockPanel.Dock="Right"/>
+                                        <Label Height="40" Content="Scalar value: " DockPanel.Dock="Right"/>
+                                        <Canvas x:Name="multiplyCanvas2" MinHeight="200"/>
+                                    </DockPanel>
+                                </TabItem>
+                                <TabItem Header="Normalization" Height="22" VerticalAlignment="Bottom">
+                                    <DockPanel Background="#FFE5E5E5">
+                                        <Button Content="Normalize Vectors" Click="Normalize2_Button_Click" DockPanel.Dock="Bottom"/>
+                                        <Canvas x:Name="normalizeCanvas2" MinHeight="200"/>
+                                    </DockPanel>
+                                </TabItem>
+                                <TabItem Header="Length/Magnitude" Height="22" VerticalAlignment="Bottom">
+                                    <DockPanel Background="#FFE5E5E5">
+                                        <Button Content="Calculate length" Click="Length2_Button_Click" DockPanel.Dock="Bottom"/>
+                                        <Canvas x:Name="lengthCanvas2" MinHeight="200"/>
+                                    </DockPanel>
+                                </TabItem>
+                                <TabItem Header="Dot Product" Height="22" VerticalAlignment="Bottom">
+                                    <DockPanel Background="#FFE5E5E5">
+                                        <Button Content="Calculate dot" Click="Dot2_Button_Click" DockPanel.Dock="Bottom"/>
+                                        <Canvas x:Name="dotCanvas2" MinHeight="200"/>
+                                    </DockPanel>
+                                </TabItem>
+                            </TabControl>
+                        </DockPanel>
+                    </Grid>
+                </DockPanel>
+            </TabItem>
+
+            <TabItem Header="Vector 3">
+                <DockPanel Background="#FFE5E5E5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30*"/>
+                            <RowDefinition Height="5"/>
+                            <RowDefinition Height="60*"/>
+                        </Grid.RowDefinitions>
+                        <DataGrid Grid.Row="0" ItemsSource="{Binding Path=VectorCollection3.Vectors}" 
+                  AutoGenerateColumns="False">
+
+                            <DataGrid.Resources>
+                                <Style x:Key="errorStyle" TargetType="{x:Type TextBox}">
+                                    <Setter Property="Padding" Value="-2"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="Validation.HasError" Value="True">
+                                            <Setter Property="Background" Value="Red"/>
+                                            <Setter Property="ToolTip" 
+                            Value="{Binding RelativeSource={RelativeSource Self},
+                            Path=(Validation.Errors)[0].ErrorContent}"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+
+                                <Style TargetType="{x:Type DataGridRow}">
+                                    <Setter Property="ValidationErrorTemplate">
+                                        <Setter.Value>
+                                            <ControlTemplate>
+                                                <Image Source="/Content/error.jpg"
+                            ToolTip="{Binding RelativeSource={
+                                RelativeSource FindAncestor,
+                                AncestorType={x:Type DataGridRow}},
+                                Path=(Validation.Errors)[0].ErrorContent}"
+                            Margin="0"
+                            Width="11" Height="11" />
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </DataGrid.Resources>
+
+                            <DataGrid.Columns>
+                                <DataGridCheckBoxColumn Header="Use" Binding="{Binding Path=Use}"/>
+
+                                <DataGridTextColumn Header="Vector" >
+                                    <DataGridTextColumn.Binding>
+                                        <Binding Path="Vector">
+                                            <Binding.Converter>
+                                                <vc:Vector3ToStringValueConverter/>
+                                            </Binding.Converter>
+                                            <Binding.ValidationRules>
+                                                <vr:Vector3ParseValidationRule/>
+                                            </Binding.ValidationRules>
+                                        </Binding>
+                                    </DataGridTextColumn.Binding>
+                                </DataGridTextColumn>
+
+                                <DataGridTemplateColumn Header="Remove">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Command="Delete" Content="X"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <GridSplitter Grid.Row="1" Height="5" VerticalAlignment="Center"/>
+
+                        <DockPanel Grid.Row="2">
+                            <Button DockPanel.Dock="Bottom" Height="25" Content="Save result" Click="Save3_Button_Click"/>
+
+                            <TabControl DockPanel.Dock="Top" >
+                                <TabItem Header="Addition/Subtraction">
+                                    <DockPanel Background="#FFE5E5E5">
+                                        <Button Content="Add Vectors" Click="Add3_Button_Click" DockPanel.Dock="Bottom"/>
+                                        <Button Content="Subtract Vectors" Click="Subtract3_Button_Click" DockPanel.Dock="Bottom"/>
+                                        <Canvas x:Name="addSubtractCanvas3" MinHeight="200"/>
+                                    </DockPanel>
+                                </TabItem>
+                                <TabItem Header="Multiplication" Height="22" VerticalAlignment="Bottom">
+                                    <DockPanel Background="#FFE5E5E5">
+                                        <Button Content="Multiply Vector" Click="Multiply3_Button_Click" DockPanel.Dock="Bottom"/>
+                                        <TextBox x:Name="scalarBox3" Width="40" Height="40" Text="{Binding Path=scalarValue, Converter={StaticResource FractionToStringValueConverter}}" DockPanel.Dock="Right"/>
+                                        <Label Height="40" Content="Scalar value: " DockPanel.Dock="Right"/>
+                                        <Canvas x:Name="multiplyCanvas3" MinHeight="200"/>
+                                    </DockPanel>
+                                </TabItem>
+                                <TabItem Header="Normalization" Height="22" VerticalAlignment="Bottom">
+                                    <DockPanel Background="#FFE5E5E5">
+                                        <Button Content="Normalize Vectors" Click="Normalize3_Button_Click" DockPanel.Dock="Bottom"/>
+                                        <Canvas x:Name="normalizeCanvas3" MinHeight="200"/>
+                                    </DockPanel>
+                                </TabItem>
+                                <TabItem Header="Length/Magnitude" Height="22" VerticalAlignment="Bottom">
+                                    <DockPanel Background="#FFE5E5E5">
+                                        <Button Content="Calculate length" Click="Length3_Button_Click" DockPanel.Dock="Bottom"/>
+                                        <Canvas x:Name="lengthCanvas3" MinHeight="200"/>
+                                    </DockPanel>
+                                </TabItem>
+                                <TabItem Header="Dot Product" Height="22" VerticalAlignment="Bottom">
+                                    <DockPanel Background="#FFE5E5E5">
+                                        <Button Content="Calculate dot" Click="Dot3_Button_Click" DockPanel.Dock="Bottom"/>
+                                        <Canvas x:Name="dotCanvas3" MinHeight="200"/>
+                                    </DockPanel>
+                                </TabItem>
+                                <TabItem Header="Cross Product" Height="22" VerticalAlignment="Bottom">
+                                    <DockPanel Background="#FFE5E5E5">
+                                        <Button Content="Calculate cross" Click="Cross3_Button_Click" DockPanel.Dock="Bottom"/>
+                                        <Canvas x:Name="crossCanvas3" MinHeight="200"/>
+                                    </DockPanel>
+                                </TabItem>
+                            </TabControl>
+                        </DockPanel>
+                    </Grid>
+                </DockPanel>
+            </TabItem>
+        </TabControl>
+    </StackPanel>
 </Window>

@@ -8,12 +8,12 @@ namespace _3_Routing.Models
     public class JustMooViewModel
     {
 
-        private int _count;
+        private int _NumberOfMoos;
 
-        public int Count
+        public int NumberOfMoos
         {
-            get { return _count; }
-            set { _count = value; }
+            get { return _NumberOfMoos; }
+            set { _NumberOfMoos = value; }
         }
         
 

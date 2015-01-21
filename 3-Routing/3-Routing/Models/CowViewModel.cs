@@ -27,7 +27,7 @@ namespace _3_Routing.Models
         public CowViewModel()
         {
             this.Name = "Default Cow";
-            this.NumberOfMoos = 1;
+            this.NumberOfMoos = 0;
         }
     }
 }

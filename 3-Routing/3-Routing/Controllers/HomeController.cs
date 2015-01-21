@@ -21,6 +21,24 @@ namespace _3_Routing.Controllers
             return View();
         }
 
+        public ActionResult Gallery(CowViewModel cow)
+        {
+            CowViewModel c = cow ?? new CowViewModel();
+            return View(c);
+        }
+
+        public ActionResult AllGallery(string perPage, string pageNum)
+        {
+            ViewBag.perPage = perPage;
+            ViewBag.pageNum = pageNum;
+            return View();
+        }
+
+        public ActionResult JustMoo(JustMooViewModel justMoo)
+        {
+            JustMooViewModel vm = justMoo ?? new JustMooViewModel();
+            return View(vm);
+        }
 
         public ActionResult Moo(CowViewModel cow)
         {
@@ -28,10 +46,9 @@ namespace _3_Routing.Controllers
             return View(c);
         }
 
-        public ActionResult JustMoo(JustMooViewModel justMoo)
+        public ActionResult Redir(string page)
         {
-            JustMooViewModel vm = justMoo ?? new JustMooViewModel();
-            return View(vm);
+            return Redirect(page);
         }
     }
 }

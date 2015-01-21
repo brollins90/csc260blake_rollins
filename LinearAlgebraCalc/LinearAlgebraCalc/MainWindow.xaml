@@ -19,7 +19,7 @@
                             <RowDefinition Height="5"/>
                             <RowDefinition Height="60*"/>
                         </Grid.RowDefinitions>
-                        <DataGrid Grid.Row="0" ItemsSource="{Binding Path=VectorCollection2.Vectors}" AutoGenerateColumns="False">
+                        <DataGrid Grid.Row="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ItemsSource="{Binding Path=VectorCollection2.Vectors}" AutoGenerateColumns="False">
 
                             <DataGrid.Resources>
                                 <Style x:Key="errorStyle" TargetType="{x:Type TextBox}">
@@ -54,7 +54,7 @@
                             <DataGrid.Columns>
                                 <DataGridCheckBoxColumn Header="Use" Binding="{Binding Path=Use}"/>
 
-                                <DataGridTextColumn Header="Vector" >
+                                <DataGridTextColumn Header="Vector" Width="*" >
                                     <DataGridTextColumn.Binding>
                                         <Binding Path="Vector">
                                             <Binding.Converter>
@@ -131,7 +131,7 @@
                             <RowDefinition Height="60*"/>
                         </Grid.RowDefinitions>
                         <DataGrid Grid.Row="0" ItemsSource="{Binding Path=VectorCollection3.Vectors}" 
-                  AutoGenerateColumns="False">
+                  AutoGenerateColumns="False" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
 
                             <DataGrid.Resources>
                                 <Style x:Key="errorStyle" TargetType="{x:Type TextBox}">
@@ -166,7 +166,7 @@
                             <DataGrid.Columns>
                                 <DataGridCheckBoxColumn Header="Use" Binding="{Binding Path=Use}"/>
 
-                                <DataGridTextColumn Header="Vector" >
+                                <DataGridTextColumn Header="Vector" Width="*" >
                                     <DataGridTextColumn.Binding>
                                         <Binding Path="Vector">
                                             <Binding.Converter>

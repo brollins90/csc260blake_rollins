@@ -1,0 +1,18 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AllGallery</title>
+</head>
+<body>
+    <div> The gallery of all the cows 
+    @(ViewBag.perPage == null ? "" : @ViewBag.perPage + " per page ")
+    @(ViewBag.pageNum == null ? "" : "and page number " + @ViewBag.pageNum)</div>
+</body>
+</html>

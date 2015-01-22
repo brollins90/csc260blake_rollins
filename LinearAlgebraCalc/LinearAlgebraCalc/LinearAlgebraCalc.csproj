@@ -58,6 +58,9 @@
     <Compile Include="Models\VectorModel.cs" />
     <Compile Include="Models\VectorModelCollection.cs" />
     <Compile Include="RelayCommand.cs" />
+    <Compile Include="UserControls\Mat2CalcControl.xaml.cs">
+      <DependentUpon>Mat2CalcControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ValidationRules\Vector2ParseValidationRule.cs" />
     <Compile Include="ValidationRules\Vector3ParseValidationRule.cs" />
     <Compile Include="ValueConverters\FractionToStringValueConverter.cs" />
@@ -75,6 +78,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UserControls\Mat2CalcControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -112,9 +119,7 @@
   <ItemGroup>
     <Resource Include="Content\error.jpg" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UserControls\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

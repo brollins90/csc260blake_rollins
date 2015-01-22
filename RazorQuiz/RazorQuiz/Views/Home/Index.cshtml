@@ -1,0 +1,34 @@
+﻿@model RazorQuiz.Models.Vehicle
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    @if (Model == null)
+    {
+        <div>
+            <a href="~/Home?vehicleType=car">Car</a>
+        </div>
+        <div>
+            <a href="~/Home?vehicleType=boat">Boat</a>
+        </div>
+        <div>
+            <a href="~/Home?vehicleType=spaceship">Spaceship</a>
+        </div>
+    }
+    else
+    {
+        <div>
+            I @Model.Verb the @Model.Noun
+        </div>
+    }
+</body>
+</html>

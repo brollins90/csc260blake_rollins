@@ -1,0 +1,29 @@
+﻿@model _4_ValidationPractice.Models.UserInfo
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CollectUserInfo</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/Site.css" />
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary()
+        <p>What is your name? @Html.TextBoxFor(x => x.Name) </p>
+        <p>How old are you? @Html.TextBoxFor(x => x.Age) </p>
+        <p>What is your address?</p>
+        <p>Street: @Html.TextBoxFor(x => x.Address.Street) </p>
+        <p>City: @Html.TextBoxFor(x => x.Address.City) </p>
+        <p>State: @Html.TextBoxFor(x => x.Address.State) </p>
+        <p>Zip: @Html.TextBoxFor(x => x.Address.Zip) </p>
+        <p><input type="submit" value="Submit" /></p>
+    }
+</body>
+</html>

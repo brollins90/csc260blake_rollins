@@ -14,7 +14,16 @@
 <body>
     @if (Model == null)
     {
-        <div>
+        @Html.ActionLink("Car", "Index", new { vehicleType = "car" })
+        <br />
+        @Html.ActionLink("Boat", "Index", new { vehicleType = "boat" })
+        <br />
+        @Html.ActionLink("Spaceship", "Index", new { vehicleType = "spaceship" })
+        <br />
+        
+        @*    action links vs html
+            
+            <div>
             <a href="~/Home?vehicleType=car">Car</a>
         </div>
         <div>
@@ -22,7 +31,7 @@
         </div>
         <div>
             <a href="~/Home?vehicleType=spaceship">Spaceship</a>
-        </div>
+        </div>*@
     }
     else
     {

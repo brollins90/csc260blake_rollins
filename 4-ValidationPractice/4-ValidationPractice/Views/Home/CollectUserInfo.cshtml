@@ -15,14 +15,14 @@
 <body>
     @using (Html.BeginForm())
     {
-        @Html.ValidationSummary()
-        <p>What is your name? @Html.TextBoxFor(x => x.Name) </p>
-        <p>How old are you? @Html.TextBoxFor(x => x.Age) </p>
+        @*@Html.ValidationSummary()*@
+        <p>What is your name? @Html.TextBoxFor(x => x.Name) @Html.ValidationMessageFor(x => x.Name)</p>
+        <p>How old are you? @Html.TextBoxFor(x => x.Age) @Html.ValidationMessageFor(x => x.Age)</p>
         <p>What is your address?</p>
-        <p>Street: @Html.TextBoxFor(x => x.Address.Street) </p>
-        <p>City: @Html.TextBoxFor(x => x.Address.City) </p>
-        <p>State: @Html.TextBoxFor(x => x.Address.State) </p>
-        <p>Zip: @Html.TextBoxFor(x => x.Address.Zip) </p>
+        <p>Street: @Html.TextBoxFor(x => x.Address.Street) @Html.ValidationMessageFor(x => x.Address.Street)</p>
+        <p>City: @Html.TextBoxFor(x => x.Address.City) @Html.ValidationMessageFor(x => x.Address.City)</p>
+        <p>State: @Html.TextBoxFor(x => x.Address.State) @Html.ValidationMessageFor(x => x.Address.State)</p>
+        <p>Zip: @Html.TextBoxFor(x => x.Address.Zip) @Html.ValidationMessageFor(x => x.Address.Zip)</p>
         <p><input type="submit" value="Submit" /></p>
     }
 </body>

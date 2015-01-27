@@ -101,7 +101,7 @@ namespace LinearAlgebraCalcLib
                     return ApproximateFraction(double.Parse(s));
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw new FormatException();
             }

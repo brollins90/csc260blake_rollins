@@ -51,7 +51,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="FractionTest.cs" />
-    <Compile Include="Mat3Test.cs" />
+    <Compile Include="MatTest.cs" />
+    <Compile Include="Mat2Test.cs" />
     <Compile Include="Vector3Test.cs" />
     <Compile Include="Vector2Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

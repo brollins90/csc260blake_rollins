@@ -1,0 +1,29 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Layout Demo</title>
+</head>
+<body>
+    <header>
+        <h1>HEADER STUFF</h1>
+    </header>
+
+    <nav>
+        @Html.ActionLink("Home", "Index") <br/>
+        @Html.ActionLink("Second Page", "SecondPage") <br/>
+        @Html.ActionLink("Num 3", "ThirdPage") <br />
+    </nav>
+
+    @RenderBody()
+
+    <footer>
+        <h5>FOOTER STUFF</h5>
+    </footer>
+</body>
+</html>

@@ -19,7 +19,7 @@ namespace LinearAlgebraCalc.ValidationRules
                 Vector2 vec = Vector2.Parse(vectorString);
                 return new ValidationResult(true, null);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return new ValidationResult(false, "The string is not parsable.");
             }

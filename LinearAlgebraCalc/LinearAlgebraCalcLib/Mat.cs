@@ -103,6 +103,7 @@ namespace LinearAlgebraCalcLib
             {
                 throw new Exception("Can only find the inverse of a square matrix");
             }
+            return null;
 
         }
 

@@ -180,5 +180,135 @@ namespace LinearAlgebraCalcLib.Test
         //    Assert.AreEqual(.565685, v2.y, .0001d);
         //    Assert.AreEqual(.707107, v2.z, .0001d);
         //}
+
+
+        [TestMethod]
+        public void A2_12()
+        {
+            Vector3 a = new Vector3(new Fraction(1), new Fraction(-3), new Fraction(4));
+            Vector3 b = new Vector3(new Fraction(2), new Fraction(5), new Fraction(-6));
+            Vector3 c = new Vector3(new Fraction(-4), new Fraction(-5), new Fraction(7));
+
+            Vector3 answer = a + b;
+
+            Assert.AreEqual(new Fraction(3), answer.X);
+            Assert.AreEqual(new Fraction(2), answer.Y);
+            Assert.AreEqual(new Fraction(-2), answer.Z);
+        }
+
+
+        [TestMethod]
+        public void A2_13()
+        {
+            Vector3 a = new Vector3(new Fraction(1), new Fraction(-3), new Fraction(4));
+            Vector3 b = new Vector3(new Fraction(2), new Fraction(5), new Fraction(-6));
+            Vector3 c = new Vector3(new Fraction(-4), new Fraction(-5), new Fraction(7));
+
+            Vector3 a2 = 2 * a;
+            Vector3 b3 = 3 * b;
+
+            Vector3 answer = a2 - b3;
+
+            Assert.AreEqual(new Fraction(-4), answer.X);
+            Assert.AreEqual(new Fraction(-21), answer.Y);
+            Assert.AreEqual(new Fraction(26), answer.Z);
+        }
+
+
+        [TestMethod]
+        public void A2_14()
+        {
+            Vector3 a = new Vector3(new Fraction(1), new Fraction(-3), new Fraction(4));
+            Vector3 b = new Vector3(new Fraction(2), new Fraction(5), new Fraction(-6));
+            Vector3 c = new Vector3(new Fraction(-4), new Fraction(-5), new Fraction(7));
+
+            Vector3 v = b + c;
+
+            Fraction answer = v.Length();
+
+            Assert.AreEqual(Fraction.Parse(Math.Sqrt(5)), answer);
+        }
+
+
+        [TestMethod]
+        public void A2_15()
+        {
+            Vector3 a = new Vector3(new Fraction(1), new Fraction(-3), new Fraction(4));
+            Vector3 b = new Vector3(new Fraction(2), new Fraction(5), new Fraction(-6));
+            Vector3 c = new Vector3(new Fraction(-4), new Fraction(-5), new Fraction(7));
+
+            Fraction answer = b.Dot(c);
+
+            Assert.AreEqual(new Fraction(-75), answer);
+        }
+
+
+        [TestMethod]
+        public void A2_16()
+        {
+            Vector3 a = new Vector3(new Fraction(1), new Fraction(-3), new Fraction(4));
+            Vector3 b = new Vector3(new Fraction(2), new Fraction(5), new Fraction(-6));
+            Vector3 c = new Vector3(new Fraction(-4), new Fraction(-5), new Fraction(7));
+
+            Vector3 answer = a.Cross(b);
+
+            Assert.AreEqual(new Fraction(-2), answer.X);
+            Assert.AreEqual(new Fraction(14), answer.Y);
+            Assert.AreEqual(new Fraction(11), answer.Z);
+        }
+
+
+        [TestMethod]
+        public void A2_17()
+        {
+            Vector3 c = new Vector3(new Fraction(-4), new Fraction(-5), new Fraction(7));
+
+            Vector3 answer = c.Normalize();
+
+            Fraction l = Fraction.Parse(Math.Sqrt(90));
+
+            Assert.AreEqual(new Fraction(-4) / l, answer.X);
+            Assert.AreEqual(new Fraction(-5) / l, answer.Y);
+            Assert.AreEqual(new Fraction(7) / l, answer.Z);
+        }
+
+
+        [TestMethod]
+        public void E1_1a()
+        {
+            Vector3 u = new Vector3(new Fraction(2), new Fraction(-18), new Fraction(12));
+            Vector3 v = new Vector3(new Fraction(5), new Fraction(9), new Fraction(6));
+
+            Vector3 answer = u + (3 * v);
+
+            Assert.AreEqual(new Fraction(17), answer.X);
+            Assert.AreEqual(new Fraction(9), answer.Y);
+            Assert.AreEqual(new Fraction(30), answer.Z);
+        }
+
+
+        [TestMethod]
+        public void E1_2a()
+        {
+            Vector3 v = new Vector3(new Fraction(5), new Fraction(9), new Fraction(6));
+
+            Fraction answer = v.Length();
+
+            Assert.AreEqual(Fraction.Parse(Math.Sqrt(142)), answer);
+        }
+
+
+        [TestMethod]
+        public void E1_4()
+        {
+            Vector3 w = new Vector3(new Fraction(-3), new Fraction(9), new Fraction(-11));
+            Vector3 v = new Vector3(new Fraction(5), new Fraction(9), new Fraction(6));
+
+            Vector3 answer = w.Cross(v);
+
+            Assert.AreEqual(new Fraction(153), answer.X);
+            Assert.AreEqual(new Fraction(-37), answer.Y);
+            Assert.AreEqual(new Fraction(-72), answer.Z);
+        }
     }
 }

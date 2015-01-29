@@ -212,6 +212,33 @@ namespace LinearAlgebraCalcLib.Test
 
         // inverse
         [TestMethod]
+        public void MatTestInverse0()
+        {
+            Mat m1 = new Mat(3, 3);
+            m1.a[0, 0] = new Fraction(3);
+            m1.a[0, 1] = new Fraction(0);
+            m1.a[0, 2] = new Fraction(2);
+            m1.a[1, 0] = new Fraction(2);
+            m1.a[1, 1] = new Fraction(0);
+            m1.a[1, 2] = new Fraction(-2);
+            m1.a[2, 0] = new Fraction(0);
+            m1.a[2, 1] = new Fraction(1);
+            m1.a[2, 2] = new Fraction(1);
+            Mat m3 = Mat.Inverse(m1);
+
+            Assert.AreEqual(new Fraction(1, 5), m3.a[0, 0]);
+            Assert.AreEqual(new Fraction(1, 5), m3.a[0, 1]);
+            Assert.AreEqual(new Fraction(0), m3.a[0, 2]);
+            Assert.AreEqual(new Fraction(-1, 5), m3.a[1, 0]);
+            Assert.AreEqual(new Fraction(3, 10), m3.a[1, 1]);
+            Assert.AreEqual(new Fraction(1), m3.a[1, 2]);
+            Assert.AreEqual(new Fraction(1, 5), m3.a[2, 0]);
+            Assert.AreEqual(new Fraction(-3, 10), m3.a[2, 1]);
+            Assert.AreEqual(new Fraction(0), m3.a[2, 2]);
+        }
+
+        // inverse
+        [TestMethod]
         public void MatTestInverse1()
         {
             Mat m1 = new Mat(2, 2);
@@ -219,7 +246,7 @@ namespace LinearAlgebraCalcLib.Test
             m1.a[0, 1] = new Fraction(-3);
             m1.a[1, 0] = new Fraction(2);
             m1.a[1, 1] = new Fraction(5);
-            Mat m3 = m1.Inverse();
+            Mat m3 = Mat.Inverse(m1);
 
             Assert.AreEqual(new Fraction(5, 11), m3.a[0, 0]);
             Assert.AreEqual(new Fraction(3, 11), m3.a[0, 1]);
@@ -241,7 +268,7 @@ namespace LinearAlgebraCalcLib.Test
             m1.a[2, 0] = new Fraction(0);
             m1.a[2, 1] = new Fraction(-1);
             m1.a[2, 2] = new Fraction(1);
-            Mat m3 = m1.Inverse();
+            Mat m3 = Mat.Inverse(m1);
 
             Assert.AreEqual(new Fraction(1), m3.a[0, 0]);
             Assert.AreEqual(new Fraction(-1), m3.a[0, 1]);
@@ -307,7 +334,7 @@ namespace LinearAlgebraCalcLib.Test
             m1.a[1, 0] = new Fraction(-3);
             m1.a[1, 1] = new Fraction(8);
 
-            Mat answer = m1.Inverse();
+            Mat answer = Mat.Inverse(m1);
 
             Assert.AreEqual(new Fraction(2), answer.a[0, 0]);
             Assert.AreEqual(new Fraction(-1), answer.a[0, 1]);
@@ -325,7 +352,7 @@ namespace LinearAlgebraCalcLib.Test
             m1.a[1, 0] = new Fraction(5);
             m1.a[1, 1] = new Fraction(-9);
 
-            Mat answer = m1.Inverse();
+            Mat answer = Mat.Inverse(m1);
 
             Assert.AreEqual(new Fraction(9, 2), answer.a[0, 0]);
             Assert.AreEqual(new Fraction(-5, 2), answer.a[0, 1]);
@@ -348,7 +375,7 @@ namespace LinearAlgebraCalcLib.Test
             m1.a[2, 1] = new Fraction(11);
             m1.a[2, 2] = new Fraction(22);
 
-            Mat answer = m1.Inverse();
+            Mat answer = Mat.Inverse(m1);
 
             Assert.AreEqual(new Fraction(11), answer.a[0, 0]);
             Assert.AreEqual(new Fraction(-11), answer.a[0, 1]);
@@ -371,7 +398,7 @@ namespace LinearAlgebraCalcLib.Test
             m1.a[1, 0] = new Fraction(-5);
             m1.a[1, 1] = new Fraction(3);
 
-            Mat answer = m1.Inverse();
+            Mat answer = Mat.Inverse(m1);
 
             Assert.AreEqual(new Fraction(-3, 51), answer.a[0, 0]);
             Assert.AreEqual(new Fraction(-9, 51), answer.a[0, 1]);
@@ -492,7 +519,7 @@ namespace LinearAlgebraCalcLib.Test
             m1.a[2, 1] = new Fraction(-11);
             m1.a[2, 2] = new Fraction(4);
 
-            Mat answer = m1.Inverse();
+            Mat answer = Mat.Inverse(m1);
 
             Assert.AreEqual(new Fraction(5), answer.a[0, 0]);
             Assert.AreEqual(new Fraction(3), answer.a[0, 1]);

@@ -227,5 +227,10 @@ namespace LinearAlgebraCalcLib
             hash *= 23 + Bottom.GetHashCode();
             return hash;
         }
+
+        internal Fraction Copy()
+        {
+            return new Fraction(this.Top, this.Bottom);
+        }
     }
 }

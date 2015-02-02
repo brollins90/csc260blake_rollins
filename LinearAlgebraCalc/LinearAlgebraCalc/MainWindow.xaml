@@ -62,7 +62,7 @@
                                                 <vc:Vector2ToStringValueConverter/>
                                             </Binding.Converter>
                                             <Binding.ValidationRules>
-                                                <vr:Vector2ParseValidationRule/>
+                                                <vr:FractionParseValidationRule/>
                                             </Binding.ValidationRules>
                                         </Binding>
                                     </DataGridTextColumn.Binding>
@@ -240,8 +240,8 @@
                     </Grid>
                 </DockPanel>
             </TabItem>
-            <TabItem Header="Matrix 2">
-                <uc:Mat2CalcControl/>
+            <TabItem Header="Matrix">
+                <uc:MatTab/>
             </TabItem>
         </TabControl>
     </StackPanel>

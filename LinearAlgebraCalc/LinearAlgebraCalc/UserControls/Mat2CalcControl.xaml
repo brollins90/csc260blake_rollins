@@ -1,6 +1,0 @@
-﻿<UserControl x:Class="LinearAlgebraCalc.UserControls.Mat2CalcControl"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <DockPanel Background="#FFE5E5E5">
-    </DockPanel>
-</UserControl>

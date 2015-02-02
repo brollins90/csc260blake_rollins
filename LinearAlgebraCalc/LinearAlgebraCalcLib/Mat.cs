@@ -17,6 +17,14 @@ namespace LinearAlgebraCalcLib
             this.Rows = rows;
             this.Columns = columns;
             this.a = new Fraction[Rows, Columns];
+
+            for (int row = 0; row < Rows; row++)
+            {
+                for (int col = 0; col < Columns; col++)
+                {
+                    this.a[row, col] = new Fraction(0);
+                }
+            }
         }
 
         public static Mat operator +(Mat lhs, Mat rhs)
@@ -94,10 +102,24 @@ namespace LinearAlgebraCalcLib
             return t;
         }
 
-        //public override string ToString()
-        //{
-        //    return (String.Format("({0},{1},{2}\n {3},{4},{5}\n {6},{7},{8})", this.a11, this.a12, this.a13, this.a21, this.a22, this.a23, this.a31, this.a32, this.a33));
-        //}
+        public override string ToString()
+        {
+            string res = "";
+
+            for (int row = 0; row < Rows; row++)
+            {
+                for (int col = 0; col < Columns; col++)
+                {
+                    res += a[row, col];
+
+                    if (row < Rows - 1)
+                        res += ",";
+                }
+                res += "\n";
+            }
+                //return (String.Format("({0},{1},{2}\n {3},{4},{5}\n {6},{7},{8})", this.a11, this.a12, this.a13, this.a21, this.a22, this.a23, this.a31, this.a32, this.a33));
+            return res;
+        }
 
         public static Mat Inverse(Mat m)
         {
@@ -111,8 +133,8 @@ namespace LinearAlgebraCalcLib
             Mat right = identity.Copy();
 
 
-            while (!left.Equals(identity) )
-            {
+            //while (!left.Equals(identity) )
+            //{
 
                 for (int col = 0; col < left.Columns; col++)
                 {
@@ -204,7 +226,11 @@ namespace LinearAlgebraCalcLib
                     }
                 }
                 int asdfjals = 7;
-            }
+            //}
+                if (!left.Equals(identity))
+                {
+                    right = null;
+                }
             return right;
         }
 

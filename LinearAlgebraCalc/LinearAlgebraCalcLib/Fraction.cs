@@ -78,6 +78,9 @@ namespace LinearAlgebraCalcLib
 
         public static Fraction Parse(string s)
         {
+            s = s.Replace('(', ' ');
+            s = s.Replace(')', ' ');
+            s = s.Trim();
             try
             {
                 if (s.Contains('/'))

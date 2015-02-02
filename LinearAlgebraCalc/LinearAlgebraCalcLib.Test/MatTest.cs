@@ -239,6 +239,34 @@ namespace LinearAlgebraCalcLib.Test
 
         // inverse
         [TestMethod]
+        public void A6_7()
+        {
+            Mat m1 = new Mat(3, 3);
+            m1.a[0, 0] = new Fraction(10);
+            m1.a[0, 1] = new Fraction(4);
+            m1.a[0, 2] = new Fraction(-12);
+            m1.a[1, 0] = new Fraction(4);
+            m1.a[1, 1] = new Fraction(4);
+            m1.a[1, 2] = new Fraction(-6);
+            m1.a[2, 0] = new Fraction(8);
+            m1.a[2, 1] = new Fraction(4);
+            m1.a[2, 2] = new Fraction(-10);
+            Mat m3 = Mat.Inverse(m1);
+
+            Assert.IsNull(m3);
+            //Assert.AreEqual(new Fraction(1, 5), m3.a[0, 0]);
+            //Assert.AreEqual(new Fraction(1, 5), m3.a[0, 1]);
+            //Assert.AreEqual(new Fraction(0), m3.a[0, 2]);
+            //Assert.AreEqual(new Fraction(-1, 5), m3.a[1, 0]);
+            //Assert.AreEqual(new Fraction(3, 10), m3.a[1, 1]);
+            //Assert.AreEqual(new Fraction(1), m3.a[1, 2]);
+            //Assert.AreEqual(new Fraction(1, 5), m3.a[2, 0]);
+            //Assert.AreEqual(new Fraction(-3, 10), m3.a[2, 1]);
+            //Assert.AreEqual(new Fraction(0), m3.a[2, 2]);
+        }
+
+        // inverse
+        [TestMethod]
         public void MatTestInverse1()
         {
             Mat m1 = new Mat(2, 2);

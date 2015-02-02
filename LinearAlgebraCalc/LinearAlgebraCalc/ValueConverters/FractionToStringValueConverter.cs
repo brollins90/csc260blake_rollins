@@ -13,12 +13,14 @@ namespace LinearAlgebraCalc.ValueConverters
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
+            //Console.WriteLine("a: " + value.ToString());
             Fraction r = (Fraction)value;
             return r.ToString();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
+            //Console.WriteLine("b: " + value.ToString());
             string fractionString = (string)value;
             Fraction x;
             try
@@ -29,7 +31,8 @@ namespace LinearAlgebraCalc.ValueConverters
             }
             catch (Exception)
             {
-                throw new FormatException();
+                return new Fraction(0);
+                //throw new FormatException();
             }
             return x;
         }

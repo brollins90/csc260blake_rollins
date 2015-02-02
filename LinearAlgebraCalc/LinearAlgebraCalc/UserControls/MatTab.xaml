@@ -1,0 +1,73 @@
+﻿<UserControl x:Class="LinearAlgebraCalc.UserControls.MatTab"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+               xmlns:models="clr-namespace:LinearAlgebraCalc.Models"
+               xmlns:uc="clr-namespace:LinearAlgebraCalc.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type uc:MatView}">
+            <Setter Property="Margin" Value="10 10 10 10"/>
+        </Style>
+    </UserControl.Resources>
+    <DockPanel Background="#FFE5E5E5">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="60*"/>
+            </Grid.RowDefinitions>
+
+            <ItemsControl ItemsSource="{Binding MatCollection}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type models:MatViewModel}">
+                        <uc:MatView/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+
+            <GridSplitter Grid.Row="1" Height="5" VerticalAlignment="Center"/>
+
+            <DockPanel Grid.Row="2">
+                <Button DockPanel.Dock="Bottom" Height="25" Content="Save result" Click="Save_Button_Click"/>
+
+                <TabControl DockPanel.Dock="Top" >
+                    <TabItem Header="Addition/Subtraction">
+                        <DockPanel Background="#FFE5E5E5">
+                            <Button Content="Add" Click="Add_Button_Click" DockPanel.Dock="Bottom"/>
+                            <Button Content="Subtract" Click="Subtract_Button_Click" DockPanel.Dock="Bottom"/>
+                            <Canvas x:Name="addSubtractCanvas" MinHeight="200"/>
+                        </DockPanel>
+                    </TabItem>
+                    <!--<TabItem Header="Multiplication" Height="22" VerticalAlignment="Bottom">
+                        <DockPanel Background="#FFE5E5E5">
+                            <Button Content="Multiply Vector" Click="Multiply2_Button_Click" DockPanel.Dock="Bottom"/>
+                            <TextBox x:Name="scalarBox2" Width="40" Height="40" Text="{Binding Path=scalarValue2, Converter={StaticResource FractionToStringValueConverter}}" DockPanel.Dock="Right"/>
+                            <Label Height="40" Content="Scalar value: " DockPanel.Dock="Right"/>
+                            <Canvas x:Name="multiplyCanvas2" MinHeight="200"/>
+                        </DockPanel>
+                    </TabItem>
+                    <TabItem Header="Inverse" Height="22" VerticalAlignment="Bottom">
+                        <DockPanel Background="#FFE5E5E5">
+                            <Button Content="Normalize Vectors" Click="Normalize2_Button_Click" DockPanel.Dock="Bottom"/>
+                            <Canvas x:Name="normalizeCanvas2" MinHeight="200"/>
+                        </DockPanel>
+                    </TabItem>
+                    <TabItem Header="Transpose" Height="22" VerticalAlignment="Bottom">
+                        <DockPanel Background="#FFE5E5E5">
+                            <Button Content="Calculate length" Click="Length2_Button_Click" DockPanel.Dock="Bottom"/>
+                            <Canvas x:Name="lengthCanvas2" MinHeight="200"/>
+                        </DockPanel>
+                    </TabItem>-->
+                </TabControl>
+            </DockPanel>
+        </Grid>
+    </DockPanel>
+</UserControl>

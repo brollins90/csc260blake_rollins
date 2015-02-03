@@ -12,6 +12,9 @@
     </Window.Resources>
     <StackPanel>
         <TabControl>
+            <TabItem Header="Matrix">
+                <uc:MatTab/>
+            </TabItem>
             <TabItem Header="Vector 2">
                 <DockPanel Background="#FFE5E5E5">
                     <Grid>
@@ -239,9 +242,6 @@
                         </DockPanel>
                     </Grid>
                 </DockPanel>
-            </TabItem>
-            <TabItem Header="Matrix">
-                <uc:MatTab/>
             </TabItem>
         </TabControl>
     </StackPanel>

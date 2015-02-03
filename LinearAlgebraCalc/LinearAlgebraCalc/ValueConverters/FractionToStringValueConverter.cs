@@ -15,7 +15,12 @@ namespace LinearAlgebraCalc.ValueConverters
         {
             //Console.WriteLine("a: " + value.ToString());
             Fraction r = (Fraction)value;
-            return r.ToString();
+
+            if (r != null)
+            {
+                return r.ToString();
+            }
+            return new Fraction(1);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

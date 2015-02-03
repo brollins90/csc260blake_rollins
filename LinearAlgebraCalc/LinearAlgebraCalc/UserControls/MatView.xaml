@@ -38,7 +38,10 @@
     
     <DockPanel Background="#FFE5E5E5">
         <Grid DockPanel.Dock="Top" x:Name="MatFrame"></Grid>
-        <CheckBox DockPanel.Dock="Bottom" x:Name="use" IsChecked="{Binding Path=Use}" Content="Use"/>
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" >
+            <CheckBox x:Name="use" IsChecked="{Binding Path=Use}" Content="Use"/>
+            <!--<Button Click="Button_Click" Content="Remove"/>-->
+        </StackPanel>
     </DockPanel>
 
 </UserControl>

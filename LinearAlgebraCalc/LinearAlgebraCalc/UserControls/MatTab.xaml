@@ -5,9 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                xmlns:models="clr-namespace:LinearAlgebraCalc.Models"
                xmlns:uc="clr-namespace:LinearAlgebraCalc.UserControls"
+        xmlns:vc="clr-namespace:LinearAlgebraCalc.ValueConverters"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
+        <vc:FractionToStringValueConverter x:Key="FractionToStringValueConverter"/>
         <Style TargetType="{x:Type uc:MatView}">
             <Setter Property="Margin" Value="10 10 10 10"/>
         </Style>
@@ -15,57 +17,78 @@
     <DockPanel Background="#FFE5E5E5">
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
                 <RowDefinition Height="30*"/>
                 <RowDefinition Height="5"/>
                 <RowDefinition Height="60*"/>
             </Grid.RowDefinitions>
 
-            <ItemsControl ItemsSource="{Binding MatCollection}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate DataType="{x:Type models:MatViewModel}">
-                        <uc:MatView/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-            </ItemsControl>
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <Button Click="Button_Click" Content="Add new Matrix"/>
+                <Label Content="Rows"/>
+                <TextBox x:Name="addRows" Width="30" Text="{Binding Path=addRValue, Converter={StaticResource FractionToStringValueConverter}}"/>
+                <Label Content="x Cols"/>
+                <TextBox x:Name="addCols" Width="30" Text="{Binding Path=addCValue, Converter={StaticResource FractionToStringValueConverter}}"/>
+                
+                <Button Click="Button_Click_1" Content="Clear Matrices"/>
+            </StackPanel>
+            
+            <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{Binding MatCollection}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="{x:Type models:MatViewModel}">
+                            <uc:MatView/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </ScrollViewer>
 
-            <GridSplitter Grid.Row="1" Height="5" VerticalAlignment="Center"/>
+            <GridSplitter Grid.Row="2" Height="5" VerticalAlignment="Center"/>
 
-            <DockPanel Grid.Row="2">
+            <DockPanel Grid.Row="3">
                 <Button DockPanel.Dock="Bottom" Height="25" Content="Save result" Click="Save_Button_Click"/>
 
                 <TabControl DockPanel.Dock="Top" >
                     <TabItem Header="Addition/Subtraction">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <DockPanel Background="#FFE5E5E5">
+                                <Button Content="Add" Click="Add_Button_Click" DockPanel.Dock="Bottom"/>
+                                <Button Content="Subtract" Click="Subtract_Button_Click" DockPanel.Dock="Bottom"/>
+                                <Canvas x:Name="addSubtractCanvas" MinHeight="200"/>
+                            </DockPanel>
+                        </ScrollViewer>
+                    </TabItem>
+                    <TabItem Header="Scalar Multiplication" Height="22" VerticalAlignment="Bottom">
                         <DockPanel Background="#FFE5E5E5">
-                            <Button Content="Add" Click="Add_Button_Click" DockPanel.Dock="Bottom"/>
-                            <Button Content="Subtract" Click="Subtract_Button_Click" DockPanel.Dock="Bottom"/>
-                            <Canvas x:Name="addSubtractCanvas" MinHeight="200"/>
+                            <Button Content="Multiply by Scalar" Click="MultiplyScaler_Button_Click" DockPanel.Dock="Bottom"/>
+                            <TextBox x:Name="scalarBox" Width="40" Height="40" Text="{Binding Path=scalarValue, Converter={StaticResource FractionToStringValueConverter}}" DockPanel.Dock="Right"/>
+                            <Label Height="40" Content="Scalar value: " DockPanel.Dock="Right"/>
+                            <Canvas x:Name="multiplyScalarCanvas" MinHeight="200"/>
                         </DockPanel>
                     </TabItem>
-                    <!--<TabItem Header="Multiplication" Height="22" VerticalAlignment="Bottom">
+                    <TabItem Header="Multiplication" Height="22" VerticalAlignment="Bottom">
                         <DockPanel Background="#FFE5E5E5">
-                            <Button Content="Multiply Vector" Click="Multiply2_Button_Click" DockPanel.Dock="Bottom"/>
-                            <TextBox x:Name="scalarBox2" Width="40" Height="40" Text="{Binding Path=scalarValue2, Converter={StaticResource FractionToStringValueConverter}}" DockPanel.Dock="Right"/>
-                            <Label Height="40" Content="Scalar value: " DockPanel.Dock="Right"/>
-                            <Canvas x:Name="multiplyCanvas2" MinHeight="200"/>
+                            <Button Content="Multiply" Click="Multiply_Button_Click" DockPanel.Dock="Bottom"/>
+                            <Canvas x:Name="multiplyCanvas" MinHeight="200"/>
                         </DockPanel>
                     </TabItem>
                     <TabItem Header="Inverse" Height="22" VerticalAlignment="Bottom">
                         <DockPanel Background="#FFE5E5E5">
-                            <Button Content="Normalize Vectors" Click="Normalize2_Button_Click" DockPanel.Dock="Bottom"/>
-                            <Canvas x:Name="normalizeCanvas2" MinHeight="200"/>
+                            <Button Content="Invert" Click="Inverse_Button_Click" DockPanel.Dock="Bottom"/>
+                            <Canvas x:Name="inverseCanvas" MinHeight="200"/>
                         </DockPanel>
                     </TabItem>
                     <TabItem Header="Transpose" Height="22" VerticalAlignment="Bottom">
                         <DockPanel Background="#FFE5E5E5">
-                            <Button Content="Calculate length" Click="Length2_Button_Click" DockPanel.Dock="Bottom"/>
-                            <Canvas x:Name="lengthCanvas2" MinHeight="200"/>
+                            <Button Content="Transpose" Click="Transpose_Button_Click" DockPanel.Dock="Bottom"/>
+                            <Canvas x:Name="transposeCanvas" MinHeight="200"/>
                         </DockPanel>
-                    </TabItem>-->
+                    </TabItem>
                 </TabControl>
             </DockPanel>
         </Grid>

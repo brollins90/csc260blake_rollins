@@ -65,6 +65,7 @@
       <DependentUpon>MatTab.xaml</DependentUpon>
     </Compile>
     <Compile Include="ValidationRules\FractionParseValidationRule.cs" />
+    <Compile Include="ValidationRules\IntParseValidationRule.cs" />
     <Compile Include="ValidationRules\Vector2ParseValidationRule.cs" />
     <Compile Include="ValidationRules\Vector3ParseValidationRule.cs" />
     <Compile Include="ValueConverters\FractionToStringValueConverter.cs" />

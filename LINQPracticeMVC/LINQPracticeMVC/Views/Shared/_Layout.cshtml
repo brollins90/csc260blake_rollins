@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - LINQ Practice</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <header>Student List - LINQ Practice</header>
+    <nav>
+        @Html.ActionLink("All Students", "Index")
+        @Html.ActionLink("Female", "Female")
+        @Html.ActionLink("Adults", "Adults")
+        @Html.ActionLink("Last name - First name", "LastFirst")
+        @Html.ActionLink("Id mod 2", "One", new { id = 2 })
+    </nav>
+
+    @RenderBody()
+    <hr />
+    <footer>Student list, by Blake Rollins</footer>
+    
+</body>
+</html>

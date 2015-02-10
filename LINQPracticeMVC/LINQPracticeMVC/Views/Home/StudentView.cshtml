@@ -1,0 +1,10 @@
+﻿@model LINQPracticeMVC.Models.Student
+
+<div class="student">
+    <div class="student-name">
+        @Html.DisplayFor(model => model.LastName), @Html.DisplayFor(model => model.FirstName)<br />
+    </div>
+    @Html.DisplayFor(model => model.ID)<br />
+    @Html.DisplayFor(model => model.Birthdate) (@Html.DisplayFor(model => model.Age))<br />
+    @Html.DisplayFor(model => model.Sex)<br />
+</div>

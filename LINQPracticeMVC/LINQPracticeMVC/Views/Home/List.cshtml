@@ -1,0 +1,13 @@
+﻿@model IEnumerable<LINQPracticeMVC.Models.Student>
+
+@{
+    ViewBag.Title = "Student List";
+}
+
+<table class="table">
+    @foreach (var item in Model)
+    {
+        @Html.Partial("StudentView",item)
+    }
+
+</table>

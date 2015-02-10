@@ -1,0 +1,22 @@
+﻿@using PartialViewDemo.Models
+@model IEnumerable<Dragon>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Our Thunder of Dragon</h2>
+@if (Model != null)
+{
+    <ul>
+        @foreach (Dragon d in Model)
+        {
+            <li>
+                @Html.Partial("_DragonView", d)
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <h3>We, dont have any dragons....</h3>
+}

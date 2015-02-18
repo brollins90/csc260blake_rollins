@@ -7,12 +7,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{5969C13D-5610-4EFF-9306-EE7ACBCCCBA1}</ProjectGuid>
+    <ProjectGuid>{69810D6D-F4F2-4DE0-84AA-F42896746F0D}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DataPersistence1</RootNamespace>
-    <AssemblyName>DataPersistence1</AssemblyName>
+    <RootNamespace>EFDemo</RootNamespace>
+    <AssemblyName>EFDemo</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -38,7 +38,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -80,32 +88,48 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\MovieDB.mdf" />
+    <Content Include="App_Data\MovieDB_log.ldf">
+      <DependentUpon>MovieDB.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="MovieDBModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MovieDBModel.edmx</DependentUpon>
+      <LastGenOutput>MovieDBModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="MovieDBModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MovieDBModel.edmx</DependentUpon>
+      <LastGenOutput>MovieDBModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\ProductsController.cs" />
-    <Compile Include="DAL\FlatFileDAL.cs" />
-    <Compile Include="ExtensionMethods\StringExtensions.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Interfaces\IDAL.cs" />
-    <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\ProductList.cs" />
+    <Compile Include="Movie.cs">
+      <DependentUpon>MovieDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MovieDBModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MovieDBModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MovieDBModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MovieDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MovieDBModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MovieDBModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -113,11 +137,15 @@
     <Content Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Products\ProductList.cshtml" />
-    <Content Include="Views\Products\ProductForm.cshtml" />
-    <Content Include="Views\Shared\_ProductView.cshtml" />
-    <Content Include="Views\Products\ProductView.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <EntityDeploy Include="MovieDBModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MovieDBModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="MovieDBModel.edmx.diagram">
+      <DependentUpon>MovieDBModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Views\Shared\_MoviePartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -126,9 +154,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Products\" />
-    <Folder Include="Views\Home\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -143,9 +172,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>24399</DevelopmentServerPort>
+          <DevelopmentServerPort>1461</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:24399/</IISUrl>
+          <IISUrl>http://localhost:1461/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

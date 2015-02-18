@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Movie>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <article>
+        <h1>This is an index page</h1>
+        <section>
+            @if(Model != null && Model.Count() > 0)
+            {
+                foreach (var item in Model)
+                {
+                    @Html.Partial("_MoviePartial", item)
+                }
+            }
+            else
+            {
+                <h3>Nothing to see here.... yet</h3>
+            }
+        </section>
+    </article>
+</body>
+</html>

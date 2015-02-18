@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="/Content/Site.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+    <header class="site-header"></header>
+    <nav>@Html.ActionLink("Home", "Index",new {}, new {@class = "btn"}) </nav>
+
+    <div class="body-content">
+        @RenderBody()
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-text">Web Site by, Blake Rollins @DateTime.Now.Year</div>
+    </footer>
+</body>
+</html>

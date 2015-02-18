@@ -1,0 +1,9 @@
+﻿@model EFDemo.Movie
+
+@if (Model != null)
+{
+    <section>
+        <h3>@Model.Title (@Model.Year)</h3>
+        <h5>&emsp;<em>@Model.Genre</em></h5>
+    </section>
+}

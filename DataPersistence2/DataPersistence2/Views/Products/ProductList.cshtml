@@ -1,0 +1,27 @@
+﻿@using DataPersistence1.ExtensionMethods;
+@model IEnumerable<DataPersistence2.Product>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Products</h2>
+
+<div class="products">
+    <div>Sort by: <a href="@Url.Action("Index", "Products", new { sort = "name"})">Name</a> | <a href="@Url.Action("Index", "Products", new { sort = "price" })">Price</a></div>
+    @foreach (var item in Model.Select((x, i) => new { Data = x, Index = i }))
+    {
+        <div class="product">
+            <a href="@Url.Action("Product", "Products", new { id = item.Data.Id})">
+                <img src="~//Content//Images//default.png" /> <br />
+                @item.Data.Name.Chop(30)
+            </a><br />
+            @Html.DisplayFor(j => item.Data.Cost)<br />
+            @item.Data.Description.Chop(30)
+        </div>
+    }
+</div>
+
+<p>
+    @Html.ActionLink("Create New", "Create", new { }, new { @class = "btn" })
+</p>

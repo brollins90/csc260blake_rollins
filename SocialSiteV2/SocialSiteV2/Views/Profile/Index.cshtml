@@ -1,0 +1,24 @@
+﻿@model SocialSiteV2.Models.Profile
+
+@{
+    ViewBag.Title = @Model.Name + "'s Profile";
+}
+
+@if (Model != null)
+{
+    <div class="profile">
+        <article>
+            <p>@(Model.Name)'s Profile</p>
+            <p><img class="profile-img" src="@Model.ImageUrl" /></p>
+            <p>@(Model.Name)'s favorites:</p>
+            @foreach(var fave in Model.Favorites)
+            {
+                <p>@(fave.Key): @(fave.Value)</p>
+            }
+        </article>
+    </div>
+}
+else
+{
+    <div>Sorry, this page is not set up yet.</div>
+}

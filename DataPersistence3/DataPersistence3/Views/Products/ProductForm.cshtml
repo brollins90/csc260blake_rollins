@@ -1,0 +1,49 @@
+﻿@model DataPersistence3.Product
+
+@{
+    ViewBag.Title = "Product form";
+}
+
+<div>Create</div>
+
+@using (Html.BeginForm())
+{
+    <div>
+        <div>Product</div>
+        @Html.ValidationSummary()
+
+        <div>
+            @Html.LabelFor(model => model.Name)
+            <div>
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+        </div>
+
+        <div>
+            @Html.LabelFor(model => model.Price)
+            <div>
+                @Html.EditorFor(model => model.Price)
+                @Html.ValidationMessageFor(model => model.Price)
+            </div>
+        </div>
+
+        <div>
+            @Html.LabelFor(model => model.Description)
+            <div>
+                @Html.EditorFor(model => model.Description)
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+        </div>
+
+        <div>
+            <div>
+                <input type="submit" value="Submit" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Return to products", "Index", new { }, new { @class = "btn" })
+</div>

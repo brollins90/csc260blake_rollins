@@ -1,0 +1,14 @@
+﻿@model DataPersistence3.Product
+
+@{
+    ViewBag.Title = "Product form";
+}
+
+@Html.Partial("_ProductView")
+
+<p>
+    @Html.ActionLink("Return to products", "Index", new { }, new { @class = "btn" })
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn" })
+    @Html.ActionLink("Remove", "Remove", new { id = Model.Id }, new { @class = "btn" })
+</p>
+

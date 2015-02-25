@@ -1,4 +1,4 @@
-﻿@using DataPersistence1.ExtensionMethods;
+﻿@using DataPersistence2.ExtensionMethods;
 @model IEnumerable<DataPersistence2.Product>
 
 @{
@@ -16,7 +16,7 @@
                 <img src="~//Content//Images//default.png" /> <br />
                 @item.Data.Name.Chop(30)
             </a><br />
-            @Html.DisplayFor(j => item.Data.Cost)<br />
+            @String.Format("{0:c}",item.Data.Price)<br />
             @item.Data.Description.Chop(30)
         </div>
     }

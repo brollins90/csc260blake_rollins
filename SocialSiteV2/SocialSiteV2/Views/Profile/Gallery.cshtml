@@ -1,0 +1,17 @@
+﻿@model SocialSiteV2.Models.GalleryViewModel
+
+@{
+    ViewBag.Title = @Model.Name + "'s Gallery";
+}
+
+<div class="gallery">
+    <article>
+        <p>@(Model.Name)'s Gallery</p>
+        <div>
+            @foreach(var img in Model.Images)
+            {
+                <img class="gallery-img" src="@(img)" />
+            }
+        </div>
+    </article>
+</div>

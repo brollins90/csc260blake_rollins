@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@if (Model != null)
+{
+    <div class="main">
+        <article>
+            @Html.Raw(Model.Welcome)
+        </article>
+    </div>
+    <div class="sidebar">
+        @foreach (var news in Model.Newses)
+        {
+            <article>
+                <h2>@news.Title</h2>
+                <p>@news.Article</p>
+            </article>
+        }
+    </div>
+}
+else
+{
+    <div>Sorry, this page is not set up yet.</div>
+}
+
+@section Scripts {
+}

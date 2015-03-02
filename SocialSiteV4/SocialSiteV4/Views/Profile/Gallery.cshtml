@@ -1,0 +1,26 @@
+﻿@model SocialSiteV4.Models.GalleryViewModel
+
+@{
+    ViewBag.Title = @Model.Name + "'s Gallery";
+}
+@if (Model.Images != null)
+{
+<div class="gallery">
+    <article>
+        <p>@(Model.Name)'s Gallery</p>
+        <div>
+            @foreach (var img in Model.Images)
+            {
+                @Html.Partial("_GalleryImage", img)
+            }
+        </div>
+    </article>
+</div>
+}
+else
+{
+    <div>Sorry, there are no images for this profile.</div>
+}
+
+@section Scripts {
+}

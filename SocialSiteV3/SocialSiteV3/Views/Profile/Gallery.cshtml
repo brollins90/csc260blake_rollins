@@ -10,7 +10,7 @@
         <div>
             @foreach(var img in Model.Images)
             {
-                <img class="gallery-img" src="@(img)" />
+                @Html.Partial("_GalleryImage", img)
             }
         </div>
     </article>

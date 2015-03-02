@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿
+using System;
 
 namespace DataPersistence3
 {
+    [Serializable]
     public partial class Product
     {
         public void UpdateProduct(Product newProduct)
         {
-            this.Description = newProduct.Description;
-            this.Name = newProduct.Name;
-            this.Price = newProduct.Price;
+            Description = newProduct.Description;
+            Name = newProduct.Name;
+            Price = newProduct.Price;
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿@using DataPersistence3.ExtensionMethods;
-@model IEnumerable<DataPersistence3.Product>
+@model IEnumerable<Product>
 
 @{
     ViewBag.Title = "List";
@@ -7,13 +7,18 @@
 
 <h2>Products</h2>
 
+@if (ViewBag.DAL != null)
+{
+    <h3>DAL type is @ViewBag.DAL</h3>
+}
+
 <div class="products">
     <div>Sort by: <a href="@Url.Action("Index", "Products", new { sort = "name"})">Name</a> | <a href="@Url.Action("Index", "Products", new { sort = "price" })">Price</a></div>
     @foreach (var item in Model.Select((x, i) => new { Data = x, Index = i }))
     {
         <div class="product">
             <a href="@Url.Action("Product", "Products", new { id = item.Data.Id})">
-                <img src="~//Content//Images//default.png" /> <br />
+                <img src="~/Content/Images/default.png" /> <br />
                 @item.Data.Name.Chop(30)
             </a><br />
             @String.Format("{0:c}", item.Data.Price)<br />

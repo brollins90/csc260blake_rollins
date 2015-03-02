@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3a4fcd9760fd444498ffea0d9e259331" Name="Diagram1">
+        <EntityTypeShape EntityType="SocialSiteV4.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SocialSiteV4.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SocialSiteV4.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SocialSiteV4.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SocialSiteV4.AspNetUser" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SocialSiteV4.Profile" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <AssociationConnector Association="SocialSiteV4.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="SocialSiteV4.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="SocialSiteV4.AspNetUserRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="SocialSiteV4.UserProfile" />
+        <EntityTypeShape EntityType="SocialSiteV4.Favorites" Width="1.5" PointX="5" PointY="6.875" />
+        <AssociationConnector Association="SocialSiteV4.ProfileFavorites" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

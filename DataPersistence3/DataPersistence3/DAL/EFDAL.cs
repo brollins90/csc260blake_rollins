@@ -1,39 +1,37 @@
 ﻿using DataPersistence3.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace DataPersistence3.DAL
 {
-    public class EFDAL : IDAL
+    public class EfDal : IDal
     {
-        ProductDBContext context;
+        private readonly ProductDBContext _context;
 
-        public EFDAL()
+        public EfDal()
         {
-            context = new ProductDBContext();
+            _context = new ProductDBContext();
         }
 
         public bool AddProduct(Product product)
         {
-            context.Products.Add(product);
+            _context.Products.Add(product);
             return SaveProducts();
         }
 
         public bool SaveProducts()
         {
-            return (context.SaveChanges() != 0);
+            return (_context.SaveChanges() != 0);
         }
 
         public IEnumerable<Product> GetProducts()
         {
-            return context.Products.ToList();
+            return _context.Products.ToList();
         }
 
         public Product GetProduct(int id)
         {
-            return context.Products.Where(x => x.Id == id).First();
+            return _context.Products.First(x => x.Id == id);
         }
 
         public bool UpdateProduct(Product product)
@@ -45,7 +43,7 @@ namespace DataPersistence3.DAL
 
         public bool DeleteProduct(int id)
         {
-            context.Products.Remove(GetProduct(id));
+            _context.Products.Remove(GetProduct(id));
             return SaveProducts();
         }
     }

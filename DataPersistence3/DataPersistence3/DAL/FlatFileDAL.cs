@@ -2,31 +2,31 @@
 using DataPersistence3.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Web;
 
 namespace DataPersistence3.DAL
 {
-    public class FlatFileDAL : IDAL
+    public class FlatFileDal : IDal
     {
         public string Path { get; set; }
-        private ProductList pl;
+        private ProductList _productList;
 
-        public FlatFileDAL(string path)
+        public FlatFileDal(string path)
         {
             Path = path;
         }
 
         public bool AddProduct(Product product)
         {
-            if (pl == null)
+            if (_productList == null)
             {
-                pl = Deserialize("products.bin");
+                _productList = Deserialize("products.bin");
             }
-            product.Id = pl.NextId++;
-            pl.Products.Add(product);
+            product.Id = _productList.NextId++;
+            _productList.Products.Add(product);
             return SaveProducts();
         }
 
@@ -34,53 +34,57 @@ namespace DataPersistence3.DAL
         {
             try
             {
-                Serialize(pl, "products.bin");
+                Serialize(_productList, "products.bin");
                 return true;
             }
             catch (Exception e)
             {
+                Trace.WriteLine(string.Format("Failed to save product list: {0}", e.Message));
                 return false;
             }
         }
 
         public IEnumerable<Product> GetProducts()
         {
-            if (pl == null)
+            if (_productList == null)
             {
-                pl = Deserialize("products.bin");
+                _productList = Deserialize("products.bin");
             }
-            return pl.Products;
+            return _productList.Products;
         }
 
         public Product GetProduct(int id)
         {
             IEnumerable<Product> products = GetProducts();
-            return products.Where(x => x.Id == id).First();
+            return products.First(x => x.Id == id);
         }
 
         public bool UpdateProduct(Product product)
         {
             IEnumerable<Product> products = GetProducts();
-            Product p = products.Where(x => x.Id == product.Id).FirstOrDefault();
-            p.UpdateProduct(product);
+            Product p = products.FirstOrDefault(x => x.Id == product.Id);
+            if (p != null)
+            {
+                p.UpdateProduct(product);
+            }
             return SaveProducts();
         }
 
         public bool DeleteProduct(int id)
         {
-            if (pl == null)
+            if (_productList == null)
             {
-                pl = Deserialize("products.bin");
+                _productList = Deserialize("products.bin");
             }
-            pl.Products.Remove(GetProduct(id));
+            _productList.Products.Remove(GetProduct(id));
             return SaveProducts();
         }
 
-        private void Serialize(ProductList PList, string filename)
+        private void Serialize(ProductList pList, string filename)
         {
-            System.IO.Stream ms = File.OpenWrite(String.Format("{0}\\{1}", Path, filename));
+            Stream ms = File.OpenWrite(String.Format("{0}\\{1}", Path, filename));
             BinaryFormatter formatter = new BinaryFormatter();
-            formatter.Serialize(ms, PList);
+            formatter.Serialize(ms, pList);
             ms.Flush();
             ms.Close();
             ms.Dispose();
@@ -103,6 +107,7 @@ namespace DataPersistence3.DAL
             }
             catch (Exception e)
             {
+                Trace.WriteLine(string.Format("Failed to deserialize product list: {0}", e.Message));
                 return new ProductList();
             }
         }

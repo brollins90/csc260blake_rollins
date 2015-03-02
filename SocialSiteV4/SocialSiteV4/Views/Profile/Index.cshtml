@@ -1,0 +1,28 @@
+﻿@model SocialSiteV4.Profile
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model != null)
+{
+    
+        <div class="profile">
+        <article>
+            <h1>@(Model.AspNetUser.UserName)'s Profile</h1>
+            <p><img class="profile-img" src="@Model.ProfileImage" /></p>
+            <h2>@(Model.AspNetUser.UserName)'s favorites:</h2>
+            @foreach (var fave in Model.Favorites)
+            {
+                <p>@(fave.Title): @(fave.Info)</p>
+            }
+        </article>
+    </div>
+}
+else
+{
+    <div>This profile has not yet been set up.</div>
+}
+
+@section Scripts {
+}

@@ -9,6 +9,7 @@ namespace SocialSiteV4.Controllers
 {
     public class HomeController : Controller
     {
+        [AllowAnonymous]
         public ActionResult Index()
         {
             HomeViewModel hvm = new HomeViewModel();

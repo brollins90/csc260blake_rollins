@@ -31,6 +31,5 @@ namespace SocialSiteV4
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Profile> Profiles { get; set; }
-        public virtual DbSet<Favorites> Favorites { get; set; }
     }
 }

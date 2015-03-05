@@ -4,196 +4,176 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Alias="Self" Namespace="SocialSiteV4.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012">
-  <EntityContainer Name="SocialSiteV4StoreContainer">
-    <EntitySet Name="C__MigrationHistory" EntityType="SocialSiteV4.Store.C__MigrationHistory" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="AspNetRoles" EntityType="SocialSiteV4.Store.AspNetRoles" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="AspNetUserClaims" EntityType="SocialSiteV4.Store.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="AspNetUserLogins" EntityType="SocialSiteV4.Store.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="AspNetUsers" EntityType="SocialSiteV4.Store.AspNetUsers" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Profiles" EntityType="SocialSiteV4.Store.Profiles" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Favorites" EntityType="SocialSiteV4.Store.Favorites" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="AspNetUserRoles" EntityType="SocialSiteV4.Store.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="SocialSiteV4.Store.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-      <End EntitySet="AspNetUsers" Role="AspNetUsers" />
-      <End EntitySet="AspNetUserClaims" Role="AspNetUserClaims" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="SocialSiteV4.Store.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-      <End EntitySet="AspNetUsers" Role="AspNetUsers" />
-      <End EntitySet="AspNetUserLogins" Role="AspNetUserLogins" />
-    </AssociationSet>
-    <AssociationSet Name="FK_AspNetUserRoles_AspNetRoles" Association="SocialSiteV4.Store.FK_AspNetUserRoles_AspNetRoles">
-      <End EntitySet="AspNetRoles" Role="AspNetRoles" />
-      <End EntitySet="AspNetUserRoles" Role="AspNetUserRoles" />
-    </AssociationSet>
-    <AssociationSet Name="FK_AspNetUserRoles_AspNetUsers" Association="SocialSiteV4.Store.FK_AspNetUserRoles_AspNetUsers">
-      <End EntitySet="AspNetUsers" Role="AspNetUsers" />
-      <End EntitySet="AspNetUserRoles" Role="AspNetUserRoles" />
-    </AssociationSet>
-    <AssociationSet Name="UserProfile" Association="SocialSiteV4.Store.UserProfile">
-      <End EntitySet="AspNetUsers" Role="AspNetUser" />
-      <End EntitySet="Profiles" Role="Profile" />
-    </AssociationSet>
-    <AssociationSet Name="ProfileFavorites" Association="SocialSiteV4.Store.ProfileFavorites">
-      <End EntitySet="Profiles" Role="Profile" />
-      <End EntitySet="Favorites" Role="Favorites" />
-    </AssociationSet>
-  </EntityContainer>
-  <EntityType Name="C__MigrationHistory">
-    <Key>
-      <PropertyRef Name="MigrationId" />
-      <PropertyRef Name="ContextKey" />
-    </Key>
-    <Property Name="MigrationId" Nullable="false" MaxLength="150" Type="nvarchar" />
-    <Property Name="ContextKey" Nullable="false" MaxLength="300" Type="nvarchar" />
-    <Property Name="Model" Nullable="false" Type="varbinary(max)" />
-    <Property Name="ProductVersion" Nullable="false" MaxLength="32" Type="nvarchar" />
-  </EntityType>
-  <EntityType Name="AspNetRoles">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Nullable="false" MaxLength="128" Type="nvarchar" />
-    <Property Name="Name" Nullable="false" MaxLength="256" Type="nvarchar" />
-  </EntityType>
-  <EntityType Name="AspNetUserClaims">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-    <Property Name="UserId" Nullable="false" MaxLength="128" Type="nvarchar" />
-    <Property Name="ClaimType" Nullable="true" Type="nvarchar(max)" />
-    <Property Name="ClaimValue" Nullable="true" Type="nvarchar(max)" />
-  </EntityType>
-  <EntityType Name="AspNetUserLogins">
-    <Key>
-      <PropertyRef Name="LoginProvider" />
-      <PropertyRef Name="ProviderKey" />
-      <PropertyRef Name="UserId" />
-    </Key>
-    <Property Name="LoginProvider" Nullable="false" MaxLength="128" Type="nvarchar" />
-    <Property Name="ProviderKey" Nullable="false" MaxLength="128" Type="nvarchar" />
-    <Property Name="UserId" Nullable="false" MaxLength="128" Type="nvarchar" />
-  </EntityType>
-  <EntityType Name="AspNetUsers">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Nullable="false" MaxLength="128" Type="nvarchar" />
-    <Property Name="Email" Nullable="true" MaxLength="256" Type="nvarchar" />
-    <Property Name="EmailConfirmed" Nullable="false" Type="bit" />
-    <Property Name="PasswordHash" Nullable="true" Type="nvarchar(max)" />
-    <Property Name="SecurityStamp" Nullable="true" Type="nvarchar(max)" />
-    <Property Name="PhoneNumber" Nullable="true" Type="nvarchar(max)" />
-    <Property Name="PhoneNumberConfirmed" Nullable="false" Type="bit" />
-    <Property Name="TwoFactorEnabled" Nullable="false" Type="bit" />
-    <Property Name="LockoutEndDateUtc" Nullable="true" Type="datetime" />
-    <Property Name="LockoutEnabled" Nullable="false" Type="bit" />
-    <Property Name="AccessFailedCount" Nullable="false" Type="int" />
-    <Property Name="UserName" Nullable="false" MaxLength="256" Type="nvarchar" />
-  </EntityType>
-  <EntityType Name="Profiles">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-    <Property Name="ProfileImage" Nullable="true" MaxLength="100" Type="nvarchar" />
-    <Property Name="AspNetUser_Id" Nullable="false" MaxLength="128" Type="nvarchar" />
-  </EntityType>
-  <EntityType Name="Favorites">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-    <Property Name="Title" Nullable="false" Type="nvarchar(max)" />
-    <Property Name="Info" Nullable="false" Type="nvarchar(max)" />
-    <Property Name="ProfileId" Nullable="false" Type="int" />
-  </EntityType>
-  <EntityType Name="AspNetUserRoles">
-    <Key>
-      <PropertyRef Name="AspNetRoles_Id" />
-      <PropertyRef Name="AspNetUsers_Id" />
-    </Key>
-    <Property Name="AspNetRoles_Id" Nullable="false" MaxLength="128" Type="nvarchar" />
-    <Property Name="AspNetUsers_Id" Nullable="false" MaxLength="128" Type="nvarchar" />
-  </EntityType>
-  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-    <End Type="SocialSiteV4.Store.AspNetUsers" Multiplicity="1" Role="AspNetUsers">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="SocialSiteV4.Store.AspNetUserClaims" Multiplicity="*" Role="AspNetUserClaims" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUsers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="AspNetUserClaims">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-    <End Type="SocialSiteV4.Store.AspNetUsers" Multiplicity="1" Role="AspNetUsers">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="SocialSiteV4.Store.AspNetUserLogins" Multiplicity="*" Role="AspNetUserLogins" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUsers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="AspNetUserLogins">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="UserProfile">
-    <End Type="SocialSiteV4.Store.AspNetUsers" Multiplicity="1" Role="AspNetUser" />
-    <End Type="SocialSiteV4.Store.Profiles" Multiplicity="*" Role="Profile" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUser">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Profile">
-        <PropertyRef Name="AspNetUser_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="ProfileFavorites">
-    <End Type="SocialSiteV4.Store.Profiles" Multiplicity="1" Role="Profile" />
-    <End Type="SocialSiteV4.Store.Favorites" Multiplicity="*" Role="Favorites" />
-    <ReferentialConstraint>
-      <Principal Role="Profile">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Favorites">
-        <PropertyRef Name="ProfileId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_AspNetUserRoles_AspNetRoles">
-    <End Type="SocialSiteV4.Store.AspNetRoles" Multiplicity="1" Role="AspNetRoles" />
-    <End Type="SocialSiteV4.Store.AspNetUserRoles" Multiplicity="*" Role="AspNetUserRoles" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetRoles">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="AspNetUserRoles">
-        <PropertyRef Name="AspNetRoles_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_AspNetUserRoles_AspNetUsers">
-    <End Type="SocialSiteV4.Store.AspNetUserRoles" Multiplicity="*" Role="AspNetUserRoles" />
-    <End Type="SocialSiteV4.Store.AspNetUsers" Multiplicity="1" Role="AspNetUsers" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUsers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="AspNetUserRoles">
-        <PropertyRef Name="AspNetUsers_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-</Schema></edmx:StorageModels>
+    <Schema Namespace="SocialSiteV4.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Profiles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProfileImage" Type="nvarchar" MaxLength="100" />
+          <Property Name="AspNetUser_Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Favorite1Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="Favorite2Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="Favorite3Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="Favorite1Data" Type="nvarchar" MaxLength="500" />
+          <Property Name="Favorite2Data" Type="nvarchar" MaxLength="500" />
+          <Property Name="Favorite3Data" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <Association Name="FK_AspNetUserRoles_AspNetRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1" />
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUserRoles_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserProfile">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Profiles" Type="Self.Profiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Profiles">
+              <PropertyRef Name="AspNetUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SocialSiteV4StoreContainer">
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Profiles" EntityType="Self.Profiles" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AspNetUserRoles_AspNetRoles" Association="Self.FK_AspNetUserRoles_AspNetRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUserRoles_AspNetUsers" Association="Self.FK_AspNetUserRoles_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProfile" Association="Self.FK_UserProfile">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Profiles" EntitySet="Profiles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SocialSiteV4" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -264,7 +244,12 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProfileImage" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUser" Relationship="SocialSiteV4.UserProfile" FromRole="Profile" ToRole="AspNetUser" />
-          <NavigationProperty Name="Favorites" Relationship="SocialSiteV4.ProfileFavorites" FromRole="Profile" ToRole="Favorites" />
+          <Property Name="Favorite1Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Favorite2Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Favorite3Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Favorite1Data" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Favorite2Data" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Favorite3Data" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -321,37 +306,10 @@
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="Profile" EntitySet="Profiles" />
           </AssociationSet>
-          <EntitySet Name="Favorites" EntityType="SocialSiteV4.Favorites" />
-          <AssociationSet Name="ProfileFavorites" Association="SocialSiteV4.ProfileFavorites">
-            <End Role="Profile" EntitySet="Profiles" />
-            <End Role="Favorites" EntitySet="Favorites" />
-          </AssociationSet>
         </EntityContainer>
         <Association Name="UserProfile">
           <End Type="SocialSiteV4.AspNetUser" Role="AspNetUser" Multiplicity="1" />
           <End Type="SocialSiteV4.Profile" Role="Profile" Multiplicity="0..1" />
-        </Association>
-        <EntityType Name="Favorites">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" Nullable="false" />
-          <Property Name="Info" Type="String" Nullable="false" />
-          <NavigationProperty Name="Profile" Relationship="SocialSiteV4.ProfileFavorites" FromRole="Favorites" ToRole="Profile" />
-          <Property Name="ProfileId" Type="Int32" Nullable="false" />
-        </EntityType>
-        <Association Name="ProfileFavorites">
-          <End Type="SocialSiteV4.Profile" Role="Profile" Multiplicity="1" />
-          <End Type="SocialSiteV4.Favorites" Role="Favorites" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Profile">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Favorites">
-              <PropertyRef Name="ProfileId" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -417,29 +375,25 @@
     <EntitySetMapping Name="Profiles">
       <EntityTypeMapping TypeName="IsTypeOf(SocialSiteV4.Profile)">
         <MappingFragment StoreEntitySet="Profiles">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Favorite3Data" ColumnName="Favorite3Data" />
+                <ScalarProperty Name="Favorite2Data" ColumnName="Favorite2Data" />
+                <ScalarProperty Name="Favorite1Data" ColumnName="Favorite1Data" />
+                <ScalarProperty Name="Favorite3Title" ColumnName="Favorite3Title" />
+                <ScalarProperty Name="Favorite2Title" ColumnName="Favorite2Title" />
+                <ScalarProperty Name="Favorite1Title" ColumnName="Favorite1Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Favorites">
-      <EntityTypeMapping TypeName="IsTypeOf(SocialSiteV4.Favorites)">
-        <MappingFragment StoreEntitySet="Favorites">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="Info" ColumnName="Info" />
-          <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <AssociationSetMapping Name="AspNetUserRoles" TypeName="SocialSiteV4.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
-      <EndProperty Name="AspNetRoles">
-        <ScalarProperty Name="Id" ColumnName="AspNetRoles_Id" />
-      </EndProperty>
-      <EndProperty Name="AspNetUsers">
-        <ScalarProperty Name="Id" ColumnName="AspNetUsers_Id" />
-      </EndProperty>
-    </AssociationSetMapping>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
     <AssociationSetMapping Name="UserProfile" TypeName="SocialSiteV4.UserProfile" StoreEntitySet="Profiles">
       <EndProperty Name="AspNetUser">
         <ScalarProperty Name="Id" ColumnName="AspNetUser_Id" />

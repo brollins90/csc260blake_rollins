@@ -179,12 +179,12 @@
     <Compile Include="C__MigrationHistory.cs">
       <DependentUpon>SocialDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Favorites.cs">
-      <DependentUpon>SocialDBModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Dal\Dal.cs" />
+    <Compile Include="Dal\IDal.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\AuthorizeTheUserAttribute.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\GalleryViewModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
@@ -218,17 +218,17 @@
     <Content Include="App_Data\aspnet-SocialSiteV4-20150226082858_log.ldf">
       <DependentUpon>aspnet-SocialSiteV4-20150226082858.mdf</DependentUpon>
     </Content>
-    <Content Include="Content\Images\100\10414458_762171237152827_5571778368246640683_n.jpg" />
-    <Content Include="Content\Images\100\10557163_10204627704482958_6156264544218529411_n.jpg" />
-    <Content Include="Content\Images\100\10612914_10152531817244001_2991491837584644470_n.jpg" />
-    <Content Include="Content\Images\100\10806214_10152532338834001_803630284489733492_n.jpg" />
-    <Content Include="Content\Images\100\10922490_797414246961859_6987115947949819923_n.jpg" />
-    <Content Include="Content\Images\100\16396_762171217152829_6259413507045518967_n.jpg" />
-    <Content Include="Content\Images\100\1914796_1242113291934_2492289_n.jpg" />
-    <Content Include="Content\Images\100\293636_2392895865197_970092009_n.jpg" />
-    <Content Include="Content\Images\100\32514_1318294356413_923346_n.jpg" />
-    <Content Include="Content\Images\100\421238_10150730550581663_1664063162_n.jpg" />
-    <Content Include="Content\Images\100\485547_3122383217546_1920952825_n.jpg" />
+    <Content Include="Content\Images\1\10414458_762171237152827_5571778368246640683_n.jpg" />
+    <Content Include="Content\Images\1\10557163_10204627704482958_6156264544218529411_n.jpg" />
+    <Content Include="Content\Images\1\10612914_10152531817244001_2991491837584644470_n.jpg" />
+    <Content Include="Content\Images\1\10806214_10152532338834001_803630284489733492_n.jpg" />
+    <Content Include="Content\Images\1\10922490_797414246961859_6987115947949819923_n.jpg" />
+    <Content Include="Content\Images\1\16396_762171217152829_6259413507045518967_n.jpg" />
+    <Content Include="Content\Images\1\1914796_1242113291934_2492289_n.jpg" />
+    <Content Include="Content\Images\1\293636_2392895865197_970092009_n.jpg" />
+    <Content Include="Content\Images\1\32514_1318294356413_923346_n.jpg" />
+    <Content Include="Content\Images\1\421238_10150730550581663_1664063162_n.jpg" />
+    <Content Include="Content\Images\1\485547_3122383217546_1920952825_n.jpg" />
     <Content Include="Content\Images\bee.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -301,6 +301,7 @@
     <Content Include="SocialDBModel.edmx.diagram">
       <DependentUpon>SocialDBModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Views\Profile\ProfileForm.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

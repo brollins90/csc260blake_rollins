@@ -7,7 +7,7 @@ namespace DataPersistence3.Controllers
 {
     public class ProductsController : Controller
     {
-        public bool DB { get; set; }
+        public bool Db { get; set; }
         private readonly IDal _dal;
 
         public ProductsController(IDal dal)
@@ -98,7 +98,7 @@ namespace DataPersistence3.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult ChangeDAL()
+        public ActionResult ChangeDal()
         {
             NinjectWebCommon.Bootstrapper.ChangeKernel();
             return new RedirectResult("/");

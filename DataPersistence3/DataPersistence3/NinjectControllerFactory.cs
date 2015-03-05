@@ -1,35 +1,31 @@
 ﻿using Ninject;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using DataPersistence3.DAL;
 using DataPersistence3.Interfaces;
-using Ninject.Web.Common;
 using System.Web.Hosting;
 
 namespace DataPersistence3
 {
     public class NinjectControllerFactory : DefaultControllerFactory
     {
-        private IKernel ninjectKernel;
+        private readonly IKernel _ninjectKernel;
 
         public NinjectControllerFactory()
         {
-            ninjectKernel = new StandardKernel();
+            _ninjectKernel = new StandardKernel();
             AddBindings();
         }
 
         protected override IController GetControllerInstance(System.Web.Routing.RequestContext requestContext, Type controllerType)
         {
-            return controllerType == null ? null : (IController)ninjectKernel.Get(controllerType);
+            return controllerType == null ? null : (IController)_ninjectKernel.Get(controllerType);
         }
 
         private void AddBindings()
         {
-            ninjectKernel.Bind<IDal>().To<EfDal>().When(x => NinjectWebCommon.IsAlreadyADbDal);
-            ninjectKernel.Bind<IDal>().To<FlatFileDal>().When(x => !NinjectWebCommon.IsAlreadyADbDal).WithConstructorArgument("path", HostingEnvironment.MapPath("~\\Products"));
+            _ninjectKernel.Bind<IDal>().To<EfDal>().When(x => NinjectWebCommon.UseEfDal);
+            _ninjectKernel.Bind<IDal>().To<FlatFileDal>().When(x => !NinjectWebCommon.UseEfDal).WithConstructorArgument("path", HostingEnvironment.MapPath("~\\Products"));
         }
     }
 }

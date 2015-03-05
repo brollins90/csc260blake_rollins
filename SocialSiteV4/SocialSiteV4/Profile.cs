@@ -14,15 +14,15 @@ namespace SocialSiteV4
     
     public partial class Profile
     {
-        public Profile()
-        {
-            this.Favorites = new HashSet<Favorites>();
-        }
-    
         public int Id { get; set; }
         public string ProfileImage { get; set; }
+        public string Favorite1Title { get; set; }
+        public string Favorite2Title { get; set; }
+        public string Favorite3Title { get; set; }
+        public string Favorite1Data { get; set; }
+        public string Favorite2Data { get; set; }
+        public string Favorite3Data { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
-        public virtual ICollection<Favorites> Favorites { get; set; }
     }
 }

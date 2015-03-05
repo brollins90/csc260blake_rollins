@@ -15,8 +15,6 @@
         <AssociationConnector Association="SocialSiteV4.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="SocialSiteV4.AspNetUserRoles" ManuallyRouted="false" />
         <AssociationConnector Association="SocialSiteV4.UserProfile" />
-        <EntityTypeShape EntityType="SocialSiteV4.Favorites" Width="1.5" PointX="5" PointY="6.875" />
-        <AssociationConnector Association="SocialSiteV4.ProfileFavorites" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

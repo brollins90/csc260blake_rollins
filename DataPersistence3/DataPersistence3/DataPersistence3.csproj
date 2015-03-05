@@ -119,7 +119,6 @@
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="DAL\EfDal.cs" />
     <Compile Include="DAL\FlatFileDal.cs" />
-    <Compile Include="DAL\NinjectDal.cs" />
     <Compile Include="ExtensionMethods\StringExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

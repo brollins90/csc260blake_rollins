@@ -6,18 +6,22 @@
 
 @if (Model != null)
 {
-    
-        <div class="profile">
+
+    <div class="profile">
         <article>
             <h1>@(Model.AspNetUser.UserName)'s Profile</h1>
-            <p><img class="profile-img" src="@Model.ProfileImage" /></p>
+            <p><img class="profile-img" src="@Model.ProfileImage"/>
+            </p>
             <h2>@(Model.AspNetUser.UserName)'s favorites:</h2>
-            @foreach (var fave in Model.Favorites)
-            {
-                <p>@(fave.Title): @(fave.Info)</p>
-            }
+            <p>@(Model.Favorite1Title): @(Model.Favorite1Data)</p>
+            <p>@(Model.Favorite2Title): @(Model.Favorite2Data)</p>
+            <p>@(Model.Favorite3Title): @(Model.Favorite3Data)</p>
         </article>
     </div>
+    if (ViewBag.Edit == "true")
+     {
+         <div>@Html.ActionLink("Edit","Edit")</div>
+     }
 }
 else
 {

@@ -1,7 +1,3 @@
-using System.Web.Hosting;
-using DataPersistence3.DAL;
-using DataPersistence3.Interfaces;
-
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(DataPersistence3.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(DataPersistence3.NinjectWebCommon), "Stop")]
 
@@ -17,35 +13,10 @@ namespace DataPersistence3
 
     public static class NinjectWebCommon 
     {
-
-        //public static string GetKernelType()
-        //{
-        //    try
-        //    {
-        //        var temp = NinjectWebCommon.Bootstrapper.Kernel.Get<IDal>();
-        //        if (temp != null)
-        //            return temp.GetType().ToString();
-        //    }
-        //    catch (Exception)
-        //    {
-        //    }
-        //    return "";
-        //}
-
-        public static bool IsAlreadyADbDal = true;
+        public static bool UseEfDal = true;
         public static void ChangeKernel(this Bootstrapper b)
         {
-            //if (IsAlreadyADbDal)
-            //{
-            //    b.Kernel.Rebind<IDal>()
-            //        .To<FlatFileDal>().InRequestScope()
-            //        .WithConstructorArgument("path", HostingEnvironment.MapPath("~\\Products"));
-            //}
-            //else
-            //{
-            //    b.Kernel.Rebind<IDal>().To<EfDal>().InRequestScope();
-            //}
-            IsAlreadyADbDal = !IsAlreadyADbDal;
+            UseEfDal = !UseEfDal;
         }
 
         public static readonly Bootstrapper Bootstrapper = new Bootstrapper();

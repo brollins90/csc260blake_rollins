@@ -1,9 +1,7 @@
 ﻿using SocialSiteV4.Models;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Web;
 using System.Web.Hosting;
 using System.Web.Mvc;
 using SocialSiteV4.Dal;
@@ -13,7 +11,7 @@ namespace SocialSiteV4.Controllers
 {
     public class ProfileController : Controller
     {
-        private readonly SocialDBContext _context = new SocialDBContext();
+        //private readonly SocialDBContext _context = new SocialDBContext();
         private readonly IDal _dal = new Dal.Dal();
 
         public ProfileController()
@@ -44,35 +42,23 @@ namespace SocialSiteV4.Controllers
                 if (User.Identity.IsAuthenticated)
                 {
                     Profile myProfile = _dal.GetProfile(GetMyId());
-                    if (profileForViewing.Id == myProfile.Id)
+                    if (profileForViewing.Id == myProfile.Id || User.IsInRole("Admin"))
                         ViewBag.Edit = "true";
                 }
             }
             return View("Index", profileForViewing);
         }
 
-        [Authorize(Roles="Admin")]
-        [AuthorizeTheUser]
+        [AuthorizeSelfAnd(Roles = "Admin")]
         public ActionResult Edit(string id)
         {
             int profileId = GetProfileId(id);
             Profile profileForViewing = _dal.GetProfile(profileId);
-            Profile myProfile = _dal.GetProfile(GetMyId());
-
-            if (profileForViewing.Id == myProfile.Id)
-            {
-                return View("ProfileForm", profileForViewing);
-            }
-            else
-            {
-                // todo: make is a 403 error
-                return new RedirectResult("Index");
-            }
+            return View("ProfileForm", profileForViewing);
         }
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
-        [AuthorizeTheUser]
+        [AuthorizeSelfAnd(Roles = "Admin")]
         public ActionResult Edit(Profile p)
         {
             if (ModelState.IsValid)
@@ -80,25 +66,23 @@ namespace SocialSiteV4.Controllers
                 //_dal.UpdateProduct(p);
                 return RedirectToAction("Index");
             }
-            else
-            {
-                return View("ProfileForm", p);
-            }
+
+            return View("ProfileForm", p);
         }
 
         [AllowAnonymous]
         public ActionResult Gallery(string id)
         {
-            if (IsMyProfile(id))
-            {
-                ViewBag.Edit = "true";
-            }
+            //if (IsMyProfile(id))
+            //{
+            //    ViewBag.Edit = "true";
+            //}
 
             ViewBag.ImageRelativePath = "/Content/Images/";
             ViewBag.ImagePath = HostingEnvironment.MapPath("~" + ViewBag.ImageRelativePath);
 
             int profileId = GetProfileId(id);
-            Profile p = _context.Profiles.FirstOrDefault(x => x.Id == profileId);
+            Profile p = _dal.GetProfile(profileId);
 
             GalleryViewModel gvm = new GalleryViewModel();
             if (p == null)
@@ -135,28 +119,9 @@ namespace SocialSiteV4.Controllers
         private int GetMyId()
         {
             string id = (User.Identity.IsAuthenticated)
-                ? (_context.AspNetUsers.First(x => x.UserName.Equals(User.Identity.Name))).Profile.Id.ToString()
+                ? _dal.GetUserByUsername(User.Identity.Name).Profile.Id.ToString()
                 : "-1";
             return int.Parse(id);
-        }
-
-        private bool IsMyProfile(string id)
-        {
-            if (User.Identity.IsAuthenticated)
-            {
-                if (id == null)
-                {
-                    // assume it is my page???
-                }
-                return
-                    ((_context.AspNetUsers.First(x => x.UserName.Equals(User.Identity.Name))).Profile.Id.ToString()
-                        .ToLower()
-                        .Equals(id.ToLower()));
-            }
-            else
-            {
-                return false;
-            }
         }
     }
 }

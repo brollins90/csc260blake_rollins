@@ -20,7 +20,7 @@
     </div>
     if (ViewBag.Edit == "true")
      {
-         <div>@Html.ActionLink("Edit","Edit")</div>
+         <div>@Html.ActionLink("Edit","Edit", "Profile", new {id = Model.Id }, null)</div>
      }
 }
 else

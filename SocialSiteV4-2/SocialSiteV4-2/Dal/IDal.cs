@@ -14,5 +14,7 @@ namespace SocialSiteV4_2.Dal
 
         ApplicationUser GetUserByUsername(string username);
 
+        void UpdateProfile(Profile p);
+
     }
 }

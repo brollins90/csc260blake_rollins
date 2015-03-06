@@ -25,7 +25,7 @@ namespace SocialSiteV4_2.Models
         public virtual DbSet<News> Newses { get; set; }
     }
 
-    public class SocialDbInitializer : DropCreateDatabaseAlways<SocialDbContext>
+    public class SocialDbInitializer : DropCreateDatabaseIfModelChanges<SocialDbContext>
     {
         protected override void Seed(SocialDbContext context)
         {

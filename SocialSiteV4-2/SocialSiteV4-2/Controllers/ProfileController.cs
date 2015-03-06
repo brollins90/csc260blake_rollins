@@ -64,7 +64,7 @@ namespace SocialSiteV4_2.Controllers
         {
             if (ModelState.IsValid)
             {
-                //_dal.UpdateProduct(p);
+                _dal.UpdateProfile(p);
                 return RedirectToAction("Index");
             }
 

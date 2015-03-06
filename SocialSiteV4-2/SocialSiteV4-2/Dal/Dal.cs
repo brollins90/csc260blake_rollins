@@ -25,5 +25,20 @@ namespace SocialSiteV4_2.Dal
         {
             return _context.Users.FirstOrDefault(x => x.UserName.Equals(username));
         }
+
+        public void UpdateProfile(Profile p)
+        {
+            Profile temp = GetProfile(p.Id);
+
+            temp.Favorite1Data = p.Favorite1Data;
+            temp.Favorite1Title = p.Favorite1Title;
+            temp.Favorite2Data = p.Favorite2Data;
+            temp.Favorite2Title = p.Favorite2Title;
+            temp.Favorite3Data = p.Favorite3Data;
+            temp.Favorite3Title = p.Favorite3Title;
+            temp.ProfileImage = p.ProfileImage;
+
+            _context.SaveChanges();
+        }
     }
 }

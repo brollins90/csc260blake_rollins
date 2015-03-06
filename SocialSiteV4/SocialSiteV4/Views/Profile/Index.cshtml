@@ -1,4 +1,4 @@
-﻿@model SocialSiteV4.Profile
+﻿@model Profile
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -10,7 +10,8 @@
     <div class="profile">
         <article>
             <h1>@(Model.AspNetUser.UserName)'s Profile</h1>
-            <p><img class="profile-img" src="@Model.ProfileImage"/>
+            <p>
+                <img class="profile-img" src="@Model.ProfileImage" />
             </p>
             <h2>@(Model.AspNetUser.UserName)'s favorites:</h2>
             <p>@(Model.Favorite1Title): @(Model.Favorite1Data)</p>
@@ -19,9 +20,9 @@
         </article>
     </div>
     if (ViewBag.Edit == "true")
-     {
-         <div>@Html.ActionLink("Edit","Edit", "Profile", new {id = Model.Id }, null)</div>
-     }
+    {
+        <div>@Html.ActionLink("Edit", "Edit", "Profile", new { id = Model.Id }, null)</div>
+    }
 }
 else
 {

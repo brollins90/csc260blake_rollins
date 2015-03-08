@@ -1,0 +1,94 @@
+﻿@model SocialSiteV4_2.Models.Profile
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@if (Model != null)
+{
+using (Html.BeginForm())
+ {
+     @Html.AntiForgeryToken()
+
+     <div class="form-horizontal">
+         <h4>Profile</h4>
+         <hr/>
+         @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+         @Html.HiddenFor(model => model.Id)
+
+         <div class="form-group">
+             @Html.LabelFor(model => model.ProfileImage, htmlAttributes: new {@class = "control-label col-md-2"})
+             <div class="col-md-10">
+                 @Html.EditorFor(model => model.ProfileImage, new {htmlAttributes = new {@class = "form-control"}})
+                 @Html.ValidationMessageFor(model => model.ProfileImage, "", new {@class = "text-danger"})
+             </div>
+         </div>
+
+         <div class="form-group">
+             @Html.LabelFor(model => model.Favorite1Title, htmlAttributes: new {@class = "control-label col-md-2"})
+             <div class="col-md-10">
+                 @Html.EditorFor(model => model.Favorite1Title, new {htmlAttributes = new {@class = "form-control"}})
+                 @Html.ValidationMessageFor(model => model.Favorite1Title, "", new {@class = "text-danger"})
+             </div>
+         </div>
+
+         <div class="form-group">
+             @Html.LabelFor(model => model.Favorite1Data, htmlAttributes: new {@class = "control-label col-md-2"})
+             <div class="col-md-10">
+                 @Html.EditorFor(model => model.Favorite1Data, new {htmlAttributes = new {@class = "form-control"}})
+                 @Html.ValidationMessageFor(model => model.Favorite1Data, "", new {@class = "text-danger"})
+             </div>
+         </div>
+
+         <div class="form-group">
+             @Html.LabelFor(model => model.Favorite2Title, htmlAttributes: new {@class = "control-label col-md-2"})
+             <div class="col-md-10">
+                 @Html.EditorFor(model => model.Favorite2Title, new {htmlAttributes = new {@class = "form-control"}})
+                 @Html.ValidationMessageFor(model => model.Favorite2Title, "", new {@class = "text-danger"})
+             </div>
+         </div>
+
+         <div class="form-group">
+             @Html.LabelFor(model => model.Favorite2Data, htmlAttributes: new {@class = "control-label col-md-2"})
+             <div class="col-md-10">
+                 @Html.EditorFor(model => model.Favorite2Data, new {htmlAttributes = new {@class = "form-control"}})
+                 @Html.ValidationMessageFor(model => model.Favorite2Data, "", new {@class = "text-danger"})
+             </div>
+         </div>
+
+         <div class="form-group">
+             @Html.LabelFor(model => model.Favorite3Title, htmlAttributes: new {@class = "control-label col-md-2"})
+             <div class="col-md-10">
+                 @Html.EditorFor(model => model.Favorite3Title, new {htmlAttributes = new {@class = "form-control"}})
+                 @Html.ValidationMessageFor(model => model.Favorite3Title, "", new {@class = "text-danger"})
+             </div>
+         </div>
+
+         <div class="form-group">
+             @Html.LabelFor(model => model.Favorite3Data, htmlAttributes: new {@class = "control-label col-md-2"})
+             <div class="col-md-10">
+                 @Html.EditorFor(model => model.Favorite3Data, new {htmlAttributes = new {@class = "form-control"}})
+                 @Html.ValidationMessageFor(model => model.Favorite3Data, "", new {@class = "text-danger"})
+             </div>
+         </div>
+
+         <div class="form-group">
+             <div class="col-md-offset-2 col-md-10">
+                 <input type="submit" value="Save" class="btn btn-default"/>
+             </div>
+         </div>
+     </div>
+ }
+}
+else
+{
+    <div>There is a problem editing the profile</div>
+}
+
+<div>
+    @Html.ActionLink("Back to Profile", "Index")
+</div>
+
+@section Scripts {
+}

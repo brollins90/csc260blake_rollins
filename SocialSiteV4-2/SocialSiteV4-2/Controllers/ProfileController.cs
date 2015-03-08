@@ -38,7 +38,7 @@ namespace SocialSiteV4_2.Controllers
 
             if (profileForViewing != null)
             {
-                ViewBag.Title = profileForViewing.User.UserName + "'s Profile";
+                //ViewBag.Title = profileForViewing.User.UserName + "'s Profile";
 
                 if (User.Identity.IsAuthenticated)
                 {
@@ -91,9 +91,9 @@ namespace SocialSiteV4_2.Controllers
                 return View("Gallery", gvm);
             }
 
-            ViewBag.Title = p.User.UserName + "'s Gallery";
+            //ViewBag.Title = p.User.UserName + "'s Gallery";
 
-            gvm.Name = p.User.UserName;
+            //gvm.Name = p.User.UserName;
             gvm.Images = new List<string>();
 
             DirectoryInfo di = new DirectoryInfo(ViewBag.ImagePath + p.Id);

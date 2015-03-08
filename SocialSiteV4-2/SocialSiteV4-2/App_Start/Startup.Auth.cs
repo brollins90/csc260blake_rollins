@@ -54,15 +54,15 @@ namespace SocialSiteV4_2
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "792776867461114",
+               appSecret: "0c1633cb51058d2e25f46e0083d46b2c");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "70542830222-ki0pgvi9deb6tj9b4rppebturfcq72s5.apps.googleusercontent.com",
+                ClientSecret = "I8QgMhz20RgMxhBshai6E9VR"
+            });
         }
     }
 }

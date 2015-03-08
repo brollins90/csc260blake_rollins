@@ -8,6 +8,7 @@ namespace SocialSiteV4_2.Models
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+        public System.DateTime? BirthDate { get; set; }
     }
 
     public class ExternalLoginListViewModel

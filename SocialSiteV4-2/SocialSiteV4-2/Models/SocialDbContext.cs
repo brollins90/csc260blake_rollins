@@ -22,7 +22,7 @@ namespace SocialSiteV4_2.Models
         }
 
         public virtual DbSet<Profile> Profiles { get; set; }
-        public virtual DbSet<News> Newses { get; set; }
+        //public virtual DbSet<News> Newses { get; set; }
     }
 
     public class SocialDbInitializer : DropCreateDatabaseIfModelChanges<SocialDbContext>
@@ -48,6 +48,22 @@ namespace SocialSiteV4_2.Models
                     roleManager.Create(new IdentityRole("User"));
                 }
 
+                if (userManager.FindByEmail("admin@blake.com") == null)
+                {
+                    var userToInsert = new ApplicationUser
+                    {
+                        UserName = "admin@blake.com",
+                        Email = "admin@blake.com",
+                        Profile = new Profile()
+                    };
+
+                    var result = userManager.Create(userToInsert, "P@$$w0rd");
+                    if (result.Succeeded)
+                    {
+                        userManager.AddToRole(userToInsert.Id, "Administrator");
+                    }
+                }
+
                 if (userManager.FindByEmail("blake@blake.com") == null)
                 {
                     var userToInsert = new ApplicationUser
@@ -60,7 +76,7 @@ namespace SocialSiteV4_2.Models
                     var result = userManager.Create(userToInsert, "P@$$w0rd");
                     if (result.Succeeded)
                     {
-                        userManager.AddToRole(userToInsert.Id, "Administrator");
+                        userManager.AddToRole(userToInsert.Id, "User");
                     }
                 }
             }

@@ -151,13 +151,14 @@ namespace SocialSiteV4_2.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Profile = new Profile() 
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
 
                     string userId = user.Id;
-                    CreateProfile(userId);
+                    //CreateProfile(userId);
 
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
@@ -373,8 +374,7 @@ namespace SocialSiteV4_2.Controllers
                 }
                 var user = new ApplicationUser
                 {
-                    UserName = model.Email, Email = model.Email,
-                    BirthDate = model.BirthDate
+                    UserName = model.Email, Email = model.Email, Profile = new Profile()
                 };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)

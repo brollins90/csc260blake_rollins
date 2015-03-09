@@ -188,6 +188,30 @@
     <Compile Include="Migrations\201503072223128_five.Designer.cs">
       <DependentUpon>201503072223128_five.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201503091412426_sdaf.cs" />
+    <Compile Include="Migrations\201503091412426_sdaf.Designer.cs">
+      <DependentUpon>201503091412426_sdaf.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503091417132_sdafas.cs" />
+    <Compile Include="Migrations\201503091417132_sdafas.Designer.cs">
+      <DependentUpon>201503091417132_sdafas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503091424434_7.cs" />
+    <Compile Include="Migrations\201503091424434_7.Designer.cs">
+      <DependentUpon>201503091424434_7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503091425588_8.cs" />
+    <Compile Include="Migrations\201503091425588_8.Designer.cs">
+      <DependentUpon>201503091425588_8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503091429086_9.cs" />
+    <Compile Include="Migrations\201503091429086_9.Designer.cs">
+      <DependentUpon>201503091429086_9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503091431070_10.cs" />
+    <Compile Include="Migrations\201503091431070_10.Designer.cs">
+      <DependentUpon>201503091431070_10.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -203,17 +227,17 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Images\1\10414458_762171237152827_5571778368246640683_n.jpg" />
-    <Content Include="Content\Images\1\10557163_10204627704482958_6156264544218529411_n.jpg" />
-    <Content Include="Content\Images\1\10612914_10152531817244001_2991491837584644470_n.jpg" />
-    <Content Include="Content\Images\1\10806214_10152532338834001_803630284489733492_n.jpg" />
-    <Content Include="Content\Images\1\10922490_797414246961859_6987115947949819923_n.jpg" />
-    <Content Include="Content\Images\1\16396_762171217152829_6259413507045518967_n.jpg" />
-    <Content Include="Content\Images\1\1914796_1242113291934_2492289_n.jpg" />
-    <Content Include="Content\Images\1\293636_2392895865197_970092009_n.jpg" />
-    <Content Include="Content\Images\1\32514_1318294356413_923346_n.jpg" />
-    <Content Include="Content\Images\1\421238_10150730550581663_1664063162_n.jpg" />
-    <Content Include="Content\Images\1\485547_3122383217546_1920952825_n.jpg" />
+    <Content Include="Content\Images\2\10414458_762171237152827_5571778368246640683_n.jpg" />
+    <Content Include="Content\Images\2\10557163_10204627704482958_6156264544218529411_n.jpg" />
+    <Content Include="Content\Images\2\10612914_10152531817244001_2991491837584644470_n.jpg" />
+    <Content Include="Content\Images\2\10806214_10152532338834001_803630284489733492_n.jpg" />
+    <Content Include="Content\Images\2\10922490_797414246961859_6987115947949819923_n.jpg" />
+    <Content Include="Content\Images\2\16396_762171217152829_6259413507045518967_n.jpg" />
+    <Content Include="Content\Images\2\1914796_1242113291934_2492289_n.jpg" />
+    <Content Include="Content\Images\2\293636_2392895865197_970092009_n.jpg" />
+    <Content Include="Content\Images\2\32514_1318294356413_923346_n.jpg" />
+    <Content Include="Content\Images\2\421238_10150730550581663_1664063162_n.jpg" />
+    <Content Include="Content\Images\2\485547_3122383217546_1920952825_n.jpg" />
     <Content Include="Content\Images\bee.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -273,6 +297,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -296,6 +321,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201503072223128_five.resx">
       <DependentUpon>201503072223128_five.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503091412426_sdaf.resx">
+      <DependentUpon>201503091412426_sdaf.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503091417132_sdafas.resx">
+      <DependentUpon>201503091417132_sdafas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503091424434_7.resx">
+      <DependentUpon>201503091424434_7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503091425588_8.resx">
+      <DependentUpon>201503091425588_8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503091429086_9.resx">
+      <DependentUpon>201503091429086_9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503091431070_10.resx">
+      <DependentUpon>201503091431070_10.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

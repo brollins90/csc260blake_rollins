@@ -18,7 +18,6 @@ namespace SocialSiteV4_2.Models
         public string Favorite2Data { get; set; }
         public string Favorite3Data { get; set; }
 
-        [Required]
         public virtual ApplicationUser User { get; set; }
     }
 }

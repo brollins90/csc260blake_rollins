@@ -43,14 +43,14 @@ namespace SocialSiteV4_2.Controllers
                 if (User.Identity.IsAuthenticated)
                 {
                     Profile myProfile = _dal.GetProfile(GetMyId());
-                    if (profileForViewing.Id == myProfile.Id || User.IsInRole("Admin"))
+                    if (profileForViewing.Id == myProfile.Id || User.IsInRole("Administrator"))
                         ViewBag.Edit = "true";
                 }
             }
             return View("Index", profileForViewing);
         }
 
-        [AuthorizeSelfAnd(Roles = "Admin")]
+        [AuthorizeSelfAnd(Roles = "Administrator")]
         public ActionResult Edit(string id)
         {
             int profileId = GetProfileId(id);
@@ -59,13 +59,13 @@ namespace SocialSiteV4_2.Controllers
         }
 
         [HttpPost]
-        [AuthorizeSelfAnd(Roles = "Admin")]
+        [AuthorizeSelfAnd(Roles = "Administrator")]
         public ActionResult Edit(Profile p)
         {
             if (ModelState.IsValid)
             {
                 _dal.UpdateProfile(p);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { id = p.Id });
             }
 
             return View("ProfileForm", p);
@@ -119,7 +119,8 @@ namespace SocialSiteV4_2.Controllers
 
         private int GetMyId()
         {
-            string id = (User.Identity.IsAuthenticated)
+            string id =
+                (User.Identity.IsAuthenticated)
                 ? _dal.GetUserByUsername(User.Identity.Name).Profile.Id.ToString()
                 : "-1";
             return int.Parse(id);

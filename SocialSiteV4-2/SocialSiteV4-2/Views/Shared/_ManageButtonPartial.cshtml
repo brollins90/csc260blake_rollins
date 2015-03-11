@@ -1,0 +1,7 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated && User.IsInRole("Administrator"))
+{
+    @Html.ActionLink("Users", "GetUsersToChangeTheRoleFor", "Manage", routeValues: null, htmlAttributes: new { @class = "btn navbar-right" })
+}
+
+

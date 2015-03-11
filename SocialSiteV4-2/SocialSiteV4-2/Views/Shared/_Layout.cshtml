@@ -9,7 +9,7 @@
 </head>
 <body>
     <header class="site-header"><img class="logo-img" src="/Content/Images/bee.jpg" /><div class="header-text">bSocial!</div></header>
-    <nav><a class="btn" href="/">Home</a><a class="btn" href="/Profile/Gallery">Gallery</a><a class="btn" href="/Profile">Profile</a> @Html.Partial("_LoginPartial")</nav>
+    <nav><a class="btn" href="/">Home</a> @Html.Partial("_NavPartial") <a class="btn" href="/Profile/Profiles">Profiles</a> @Html.Partial("_ManageButtonPartial") @Html.Partial("_LoginPartial")</nav>
 
     @RenderBody()
     <footer class="site-footer"><div class="footer-text">Web Site by, Blake Rollins</div></footer>

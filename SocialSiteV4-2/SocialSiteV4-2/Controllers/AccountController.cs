@@ -156,6 +156,7 @@ namespace SocialSiteV4_2.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    UserManager.AddToRole(user.Id, "User");
 
                     string userId = user.Id;
                     //CreateProfile(userId);
@@ -377,6 +378,7 @@ namespace SocialSiteV4_2.Controllers
                     UserName = model.Email, Email = model.Email, Profile = new Profile()
                 };
                 var result = await UserManager.CreateAsync(user);
+                UserManager.AddToRole(user.Id, "User");
                 if (result.Succeeded)
                 {
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);

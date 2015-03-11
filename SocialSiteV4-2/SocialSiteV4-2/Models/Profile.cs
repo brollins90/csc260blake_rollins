@@ -19,5 +19,16 @@ namespace SocialSiteV4_2.Models
         public string Favorite3Data { get; set; }
 
         public virtual ApplicationUser User { get; set; }
+
+        public Profile()
+        {
+            ProfileImage = "/Content/Images/default.png";
+            Favorite1Title = "Favorite Food";
+            Favorite1Data = "Hamburger";
+            Favorite2Title = "Favorite Song";
+            Favorite2Data = "Crazy Train - Ozzy";
+            Favorite3Title = "Favorite Movie";
+            Favorite3Data = "Pokemon Movie";
+        }
     }
 }

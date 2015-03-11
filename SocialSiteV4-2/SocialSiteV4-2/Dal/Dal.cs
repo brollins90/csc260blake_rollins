@@ -1,5 +1,6 @@
 ﻿using SocialSiteV4_2.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
@@ -20,6 +21,15 @@ namespace SocialSiteV4_2.Dal
             return _context.Profiles.FirstOrDefault(x => x.Id == id);
         }
 
+        public IEnumerable<ApplicationUser> GetAllUsers()
+        {
+            return _context.Users.Select(x => x).ToList();
+        }
+
+        public IEnumerable<Profile> GetProfileList()
+        {
+            return _context.Profiles.Select(x=>x).ToList();
+        }
 
         public ApplicationUser GetUserByUsername(string username)
         {

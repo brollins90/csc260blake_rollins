@@ -1,4 +1,5 @@
-﻿using SocialSiteV4.Models;
+﻿using System;
+using SocialSiteV4.Models;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -17,16 +18,6 @@ namespace SocialSiteV4_2.Controllers
 
         public ProfileController()
         {
-            //p = new Profile();
-            //p.Id = 100;
-            //p.Name = "Blake Rollins";
-            //p.ImageUrl = "/Content/Images/" + p.Id + "/10922490_797414246961859_6987115947949819923_n.jpg";
-            //p.ImageRelativePath = "/Content/Images/" + p.Id + "/";
-            //p.ImagePath = HostingEnvironment.MapPath("~" + p.ImageRelativePath);
-            //p.Favorites = new Dictionary<string, string>();
-            //p.Favorites.Add("Book", "Game of Thrones (George R R Martin)");
-            //p.Favorites.Add("Movie", "Dogma (Kevin Smith)");
-            //p.Favorites.Add("Food", "Shrimp fetuccini alfredo");
         }
 
         // GET: Profile
@@ -48,6 +39,14 @@ namespace SocialSiteV4_2.Controllers
                 }
             }
             return View("Index", profileForViewing);
+        }
+
+        // GET: Profile
+        [AllowAnonymous]
+        public ActionResult Profiles()
+        {
+            IEnumerable<Profile> profiles = _dal.GetProfileList();
+            return View("Profiles", profiles);
         }
 
         [AuthorizeSelfAnd(Roles = "Administrator")]
@@ -74,10 +73,6 @@ namespace SocialSiteV4_2.Controllers
         [AllowAnonymous]
         public ActionResult Gallery(string id)
         {
-            //if (IsMyProfile(id))
-            //{
-            //    ViewBag.Edit = "true";
-            //}
 
             ViewBag.ImageRelativePath = "/Content/Images/";
             ViewBag.ImagePath = HostingEnvironment.MapPath("~" + ViewBag.ImageRelativePath);
@@ -96,11 +91,18 @@ namespace SocialSiteV4_2.Controllers
             //gvm.Name = p.User.UserName;
             gvm.Images = new List<string>();
 
-            DirectoryInfo di = new DirectoryInfo(ViewBag.ImagePath + p.Id);
-            FileInfo[] images = di.GetFiles();
-            foreach (var f in images)
+            try
             {
-                gvm.Images.Add(ViewBag.ImageRelativePath + p.Id + "/" + f.Name);
+                DirectoryInfo di = new DirectoryInfo(ViewBag.ImagePath + p.Id);
+                FileInfo[] images = di.GetFiles();
+                foreach (var f in images)
+                {
+                    gvm.Images.Add(ViewBag.ImageRelativePath + p.Id + "/" + f.Name);
+                }
+            }
+            catch (Exception)
+            {
+                
             }
             return View(gvm);
         }

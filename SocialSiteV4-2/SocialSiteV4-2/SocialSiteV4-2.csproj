@@ -212,6 +212,14 @@
     <Compile Include="Migrations\201503091431070_10.Designer.cs">
       <DependentUpon>201503091431070_10.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201503101406233_21.cs" />
+    <Compile Include="Migrations\201503101406233_21.Designer.cs">
+      <DependentUpon>201503101406233_21.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503101424502_22.cs" />
+    <Compile Include="Migrations\201503101424502_22.Designer.cs">
+      <DependentUpon>201503101424502_22.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -239,6 +247,7 @@
     <Content Include="Content\Images\2\421238_10150730550581663_1664063162_n.jpg" />
     <Content Include="Content\Images\2\485547_3122383217546_1920952825_n.jpg" />
     <Content Include="Content\Images\bee.jpg" />
+    <Content Include="Content\Images\default.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -294,6 +303,10 @@
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Profile\Gallery.cshtml" />
     <Content Include="Views\Profile\ProfileForm.cshtml" />
+    <Content Include="Views\Profile\Profiles.cshtml" />
+    <Content Include="Views\Shared\_ManageButtonPartial.cshtml" />
+    <Content Include="Views\Manage\GetUsersToChangeTheRoleFor.cshtml" />
+    <Content Include="Views\Shared\_NavPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -339,6 +352,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201503091431070_10.resx">
       <DependentUpon>201503091431070_10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503101406233_21.resx">
+      <DependentUpon>201503101406233_21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503101424502_22.resx">
+      <DependentUpon>201503101424502_22.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

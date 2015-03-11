@@ -1,0 +1,14 @@
+﻿@model IEnumerable<SocialSiteV4_2.Models.Profile>
+
+@{
+    ViewBag.Title = "Profiles";
+}
+
+<h2>Profiles</h2>
+
+@foreach (var item in Model) {
+    <div><a href="~/Profile/Index/@item.Id">@Html.Partial("_GalleryImage", item.ProfileImage) @item.User.UserName</a></div>
+}
+
+@section Scripts {
+}

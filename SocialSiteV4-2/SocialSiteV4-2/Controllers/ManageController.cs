@@ -3,10 +3,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using SocialSiteV4_2.Dal;
 using SocialSiteV4_2.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace SocialSiteV4_2.Controllers
 {
@@ -15,6 +18,9 @@ namespace SocialSiteV4_2.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private readonly IDal _dal = new Dal.Dal();
+
+        private readonly SocialDbContext _context = new SocialDbContext();
 
         public ManageController()
         {
@@ -329,6 +335,69 @@ namespace SocialSiteV4_2.Controllers
             }
 
             base.Dispose(disposing);
+        }
+
+        [Authorize(Roles="Administrator")]
+        public ActionResult GetUsersToChangeTheRoleFor()
+        {
+            return View("GetUsersToChangeTheRoleFor", _dal.GetAllUsers().Where(x=>x.Id != User.Identity.GetUserId()));
+        }
+
+        //[HttpPost]
+        public ActionResult ChangeRole(string userid, string role)
+        {
+            try
+            {
+                ApplicationUser user = UserManager.FindById(userid);
+                IdentityRole adminRole = _context.Roles.First(x => x.Name.Equals("Administrator"));
+                IdentityRole userRole = _context.Roles.First(x => x.Name.Equals("User"));
+
+                if (UserManager.IsInRole(user.Id, "Administrator"))
+                {
+                    //UserManager.RemoveFromRole(user.Id, "Administrator");
+                    //adminRole.Users.Remove()
+                    IQueryable<IdentityUserRole> roles = _context.AspNetUserRoles.Where(x => x.UserId == user.Id);
+                    _context.AspNetUserRoles.RemoveRange(roles);
+                    _context.SaveChanges();
+                }
+                if (UserManager.IsInRole(user.Id, "User"))
+                {
+                    //UserManager.RemoveFromRole(user.Id, "User");
+                    IQueryable<IdentityUserRole> roles = _context.AspNetUserRoles.Where(x => x.UserId == user.Id);
+                    _context.AspNetUserRoles.RemoveRange(roles);
+                    _context.SaveChanges();
+                }
+                //var res = UserManager.AddToRole(user.Id, role);
+
+
+
+                if (role.Equals("Administrator"))
+                {
+                    _context.AspNetUserRoles.Add(new IdentityUserRole()
+                    {
+                        UserId = user.Id,
+                        RoleId = adminRole.Id
+                    });
+                    _context.SaveChanges();
+                }
+
+
+                if (role.Equals("User"))
+                {
+                    _context.AspNetUserRoles.Add(new IdentityUserRole()
+                    {
+                        UserId = user.Id,
+                        RoleId = userRole.Id
+                    });
+                    _context.SaveChanges();
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine();
+            }
+            return new RedirectResult("/");
         }
 
 #region Helpers

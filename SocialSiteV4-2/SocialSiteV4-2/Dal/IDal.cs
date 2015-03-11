@@ -12,6 +12,9 @@ namespace SocialSiteV4_2.Dal
         Profile GetRandomProfile();
         Profile GetProfile(int id);
 
+        IEnumerable<ApplicationUser> GetAllUsers();
+        IEnumerable<Profile> GetProfileList();
+
         ApplicationUser GetUserByUsername(string username);
 
         void UpdateProfile(Profile p);

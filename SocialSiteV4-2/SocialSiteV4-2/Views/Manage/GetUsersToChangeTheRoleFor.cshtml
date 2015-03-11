@@ -1,0 +1,25 @@
+﻿@model IEnumerable<SocialSiteV4_2.Models.ApplicationUser>
+@{
+    ViewBag.Title = "GetUsersToChangeTheRoleFor";
+}
+
+<h2>GetUsersToChangeTheRoleFor</h2>
+
+@foreach (var u in Model)
+{
+    <p>@u.UserName
+    @Ajax.ActionLink("Make Administrator", "ChangeRole", "Manage", new
+   {
+       userid = u.Id,
+       role = "Administrator"
+   }, new AjaxOptions { HttpMethod = "POST" })
+        @Ajax.ActionLink("Make User", "ChangeRole", "Manage", new
+    {
+        userid = u.Id,
+       role = "User"
+   }, new AjaxOptions { HttpMethod = "POST" })
+    </p>
+}
+
+@section Scripts {
+}

@@ -1,0 +1,5 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    <a class="btn" href="/Profile/Gallery">Your Gallery</a><a class="btn" href="/Profile">Your Profile</a>
+}

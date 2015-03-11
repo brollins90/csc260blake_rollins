@@ -23,6 +23,24 @@ namespace SocialSiteV4_2.Models
 
         public virtual DbSet<Profile> Profiles { get; set; }
         //public virtual DbSet<News> Newses { get; set; }
+        //public virtual DbSet<IdentityRole> AspNetRoles { get; set; }
+        public virtual DbSet<IdentityUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<IdentityUserLogin> AspNetUserLogins { get; set; }
+        public virtual DbSet<IdentityUserRole> AspNetUserRoles { get; set; }
+        //public virtual DbSet<IdentityUser> AspNetUsers { get; set; }
+
+
+
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    // Set the Worlds not to deserialize with EF.
+        //    modelBuilder.Entity<ApplicationUser>()
+        //                .HasRequired(a => a.Profile).WithRequiredPrincipal();
+
+        //    modelBuilder.Entity<Profile>().HasOptional(b => b.User);
+
+        //    modelBuilder.Entity<IdentityUserLogin>().HasKey(x=>x.ID);
+        //}
     }
 
     public class SocialDbInitializer : DropCreateDatabaseIfModelChanges<SocialDbContext>
@@ -66,11 +84,21 @@ namespace SocialSiteV4_2.Models
 
                 if (userManager.FindByEmail("blake@blake.com") == null)
                 {
+
+                    Profile p = new Profile();
+                    p.Favorite1Title = "Favorite Book";
+                    p.Favorite1Data = "Game of Thrones (George R R Martin)";
+                    p.Favorite2Title = "Favorite Movie";
+                    p.Favorite2Data = "Dogma (Kevin Smith)";
+                    p.Favorite3Title = "Favorite Food";
+                    p.Favorite3Data = "Shrimp fetuccini alfredo";
+                    p.ProfileImage = "/Content/Images/2/10922490_797414246961859_6987115947949819923_n.jpg";
+
                     var userToInsert = new ApplicationUser
                     {
                         UserName = "blake@blake.com",
                         Email = "blake@blake.com",
-                        Profile = new Profile()
+                        Profile = p
                     };
 
                     var result = userManager.Create(userToInsert, "P@$$w0rd");
